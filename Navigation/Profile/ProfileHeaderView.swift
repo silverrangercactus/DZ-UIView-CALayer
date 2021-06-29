@@ -15,6 +15,8 @@ class ProfileHeaderView: UIView {
     let avatarView = UIImageView()
     let topicView = UITextView()
     let commentView = UITextView()
+    let setStatusView = UITextField()
+    var tittle = String()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,6 +29,7 @@ class ProfileHeaderView: UIView {
         avatarView.frame = CGRect(x: 16, y: self.safeAreaInsets.top + 16, width: 120, height: 120)
         topicView.frame = CGRect(x: self.frame.width/3, y: self.safeAreaInsets.top + 27, width: 250, height: 30)
         commentView.frame = CGRect(x: self.frame.width/3, y: safeAreaInsets.top + 84, width: 250, height: 30)
+        setStatusView.frame = CGRect(x: self.frame.width/3 + 10, y: safeAreaInsets.top + 110, width: 250, height: 40)
         
     }
     
@@ -35,6 +38,7 @@ class ProfileHeaderView: UIView {
         addSubview(avatarView)
         addSubview(topicView)
         addSubview(commentView)
+        addSubview(setStatusView)
         
         button.layer.cornerRadius = 10
         button.backgroundColor = .systemBlue
@@ -64,13 +68,25 @@ class ProfileHeaderView: UIView {
         commentView.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         commentView.textAlignment = .left
         
-        
+       
+        setStatusView.placeholder = "Set status"
+        setStatusView.backgroundColor = .white
+        setStatusView.tintColor = .black
+        setStatusView.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+        setStatusView.layer.cornerRadius = 12
+        setStatusView.layer.borderWidth = 1
+        setStatusView.layer.borderColor = UIColor.black.cgColor
+        setStatusView.addTarget(self, action: #selector(actionButtonSetStatus), for: .editingChanged)
     }
     
     
     @objc func actionButtonPressed() {
-        print(topicView.text!)
+        commentView.text = tittle
         
+    }
+    
+    @objc func actionButtonSetStatus(_ textField: UITextField) {
+        tittle = textField.text!
     }
     
     required init?(coder: NSCoder) {
