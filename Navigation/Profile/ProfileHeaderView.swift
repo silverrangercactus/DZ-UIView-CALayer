@@ -57,13 +57,13 @@ class ProfileHeaderView: UIView {
         avatarView.layer.borderColor = UIColor.white.cgColor
         
         topicView.text = "Miss cowboy Cactus"
-        topicView.backgroundColor = nil
+        topicView.backgroundColor = .none
         topicView.textColor = .black
         topicView.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         topicView.textAlignment = .left
         
         commentView.text = "I will wait your text"
-        commentView.backgroundColor = nil
+        commentView.backgroundColor = .none
         commentView.textColor = .gray
         commentView.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         commentView.textAlignment = .left
@@ -86,7 +86,7 @@ class ProfileHeaderView: UIView {
     }
     
     @objc func actionButtonSetStatus(_ textField: UITextField) {
-        tittle = textField.text!
+        tittle = textField.text ?? ""
     }
     
     required init?(coder: NSCoder) {
