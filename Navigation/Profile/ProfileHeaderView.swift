@@ -99,8 +99,8 @@ class ProfileHeaderView: UIView {
         super.init(coder: coder)
         addSubview(newButton)
         
-        newButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
+            newButton.translatesAutoresizingMaskIntoConstraints = false
+                NSLayoutConstraint.activate([
             newButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 0),
             newButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
             newButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
