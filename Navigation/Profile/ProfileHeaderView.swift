@@ -80,6 +80,12 @@ class ProfileHeaderView: UIView {
     @IBAction func actionButton(_ sender: Any) {
         commentView.text = title
     }
+
+    var newButton: UIButton = {
+        let newButton = UIButton()
+        newButton.setTitle("New button", for: .normal)
+        return newButton
+    }()
     
 }
     
