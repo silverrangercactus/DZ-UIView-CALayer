@@ -81,32 +81,6 @@ class ProfileHeaderView: UIView {
         commentView.text = title
     }
 
-    var newButton: UIButton = {
-        let newButton = UIButton()
-        newButton.setTitle("New button", for: .normal)
-        newButton.backgroundColor = .systemPink
-        newButton.layer.cornerRadius = 10
-        return newButton
-    }()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-
-    }
-
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        addSubview(newButton)
-        
-            newButton.translatesAutoresizingMaskIntoConstraints = false
-                NSLayoutConstraint.activate([
-            newButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 0),
-            newButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
-            newButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
-            newButton.heightAnchor.constraint(equalToConstant: 40),
-        ])
-    }
 
 }
 

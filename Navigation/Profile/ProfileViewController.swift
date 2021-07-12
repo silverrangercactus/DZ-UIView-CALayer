@@ -12,6 +12,14 @@ class ProfileViewController: UIViewController {
     
    let profileView = ProfileHeaderView()
     
+    var newButton: UIButton = {
+        let newButton = UIButton()
+        newButton.setTitle("New button", for: .normal)
+        newButton.backgroundColor = .systemPink
+        newButton.layer.cornerRadius = 10
+        return newButton
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .lightGray
@@ -22,7 +30,15 @@ class ProfileViewController: UIViewController {
    
     override func viewWillLayoutSubviews() {
         view.addSubview(profileView)
+        view.addSubview(newButton)
         
+        newButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            newButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0),
+            newButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            newButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            newButton.heightAnchor.constraint(equalToConstant: 40),
+            ])
         
     }
  
