@@ -31,15 +31,23 @@ class ProfileViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         view.addSubview(profileView)
         view.addSubview(newButton)
+
         
         newButton.translatesAutoresizingMaskIntoConstraints = false
+        profileView.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
             newButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0),
             newButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
             newButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
             newButton.heightAnchor.constraint(equalToConstant: 40),
+            
+            profileView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            profileView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            profileView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            profileView.bottomAnchor.constraint(equalTo: newButton.topAnchor)
             ])
         
     }
- 
+  
 }

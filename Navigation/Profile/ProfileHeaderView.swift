@@ -20,6 +20,7 @@ class ProfileHeaderView: UIView {
             avatarImage.layer.cornerRadius = 60
             avatarImage.layer.borderWidth = 3
             avatarImage.layer.borderColor = UIColor.white.cgColor
+           
         }
     }
     
@@ -80,8 +81,6 @@ class ProfileHeaderView: UIView {
     @IBAction func actionButton(_ sender: Any) {
         commentView.text = title
     }
-
-
 }
 
     
