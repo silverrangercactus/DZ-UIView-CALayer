@@ -13,11 +13,11 @@
         <scene sceneID="bRX-aC-Cpi">
             <objects>
                 <viewController storyboardIdentifier="FED" id="Ca1-kw-dKJ" customClass="ProfileViewController" customModule="Navigation" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" restorationIdentifier="FED5" id="z6I-Co-0n3" customClass="ProfileHeaderView" customModule="Navigation" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="z6I-Co-0n3" customClass="ProfileHeaderView" customModule="Navigation" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" restorationIdentifier="FED6" translatesAutoresizingMaskIntoConstraints="NO" id="9vQ-od-bpM">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9vQ-od-bpM">
                                 <rect key="frame" x="0.0" y="44" width="414" height="220"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ycy-zl-6sH">
@@ -83,7 +83,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="FCL-IZ-fe8"/>
-                        <color key="backgroundColor" systemColor="systemTealColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="FCL-IZ-fe8" firstAttribute="trailing" secondItem="9vQ-od-bpM" secondAttribute="trailing" id="6XD-jW-BBp"/>
                             <constraint firstItem="9vQ-od-bpM" firstAttribute="top" secondItem="FCL-IZ-fe8" secondAttribute="top" id="MBA-9B-nKV"/>
@@ -298,9 +298,6 @@
         </systemColor>
         <systemColor name="systemPurpleColor">
             <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemTealColor">
-            <color red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

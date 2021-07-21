@@ -9,45 +9,83 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
+        
+    var tableView = UITableView(frame: .zero, style: .grouped)
+    var cellID = "cellID"
+    let headerID = "headerViewID"
     
-   let profileView = ProfileHeaderView()
-    
-    var newButton: UIButton = {
-        let newButton = UIButton()
-        newButton.setTitle("New button", for: .normal)
-        newButton.backgroundColor = .systemPink
-        newButton.layer.cornerRadius = 10
-        return newButton
-    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = .white
+        setupTableView()
+        setupConstraints()
         
-       
     }
       
    
-    override func viewWillLayoutSubviews() {
-        view.addSubview(profileView)
-        view.addSubview(newButton)
-
+    func setupTableView() {
+        view.addSubview(tableView)
         
-        newButton.translatesAutoresizingMaskIntoConstraints = false
-        profileView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(PostTableViewCell.self, forCellReuseIdentifier: cellID)
+        tableView.dataSource = self
+        tableView.delegate = self
         
-        NSLayoutConstraint.activate([
-            newButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0),
-            newButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            newButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            newButton.heightAnchor.constraint(equalToConstant: 40),
-            
-            profileView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            profileView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            profileView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            profileView.bottomAnchor.constraint(equalTo: newButton.topAnchor)
-            ])
-        
+        //зарегал кастомный Header
+        //       tableView.register(PostsTableHeaderView.self, forHeaderFooterViewReuseIdentifier: headerID)
     }
-  
+        
+    func setupConstraints() {
+        let constraints = [
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+        ]
+        
+        NSLayoutConstraint.activate(constraints)
+    }
 }
+
+
+extension ProfileViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellID) as! PostTableViewCell
+        cell.posts = PostView.tableModel[indexPath.section].posts[indexPath.row]
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return PostView.tableModel[section].posts.count
+    }
+    
+    
+// для кастомного хедера
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: headerID) as? PostsTableHeaderView else
+//        { return nil }
+//        headerView.section = PostView.tableModel[section]
+//        return headerView
+//    }
+    
+     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = ProfileTableHederView()
+        return header
+      }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 210
+    }
+    
+}
+
+extension ProfileViewController: UITableViewDelegate {
+        func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+            let posts = PostView.tableModel[indexPath.section].posts[indexPath.row]
+
+            (cell as! PostTableViewCell).posts = posts
+        }
+    }
+

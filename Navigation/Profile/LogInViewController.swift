@@ -23,7 +23,7 @@ class LogInViewController: UIViewController {
         emailPhoneTextField.backgroundColor = .systemGray6
         emailPhoneTextField.placeholder = "Email or phone"
         emailPhoneTextField.layer.masksToBounds = true
-        emailPhoneTextField.layer.backgroundColor = UIColor.lightGray.cgColor
+        emailPhoneTextField.layer.backgroundColor = UIColor.systemGray6.cgColor
         emailPhoneTextField.layer.borderWidth = 0.5
         emailPhoneTextField.layer.cornerRadius = 10
         emailPhoneTextField.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
@@ -39,7 +39,7 @@ class LogInViewController: UIViewController {
         passwordTextField.backgroundColor = .systemGray6
         passwordTextField.placeholder = "Password"
         passwordTextField.layer.masksToBounds = true
-        passwordTextField.layer.backgroundColor = UIColor.lightGray.cgColor
+        passwordTextField.layer.backgroundColor = UIColor.systemGray6.cgColor
         passwordTextField.layer.borderWidth = 0.5
         passwordTextField.layer.cornerRadius = 10
         passwordTextField.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
@@ -53,7 +53,11 @@ class LogInViewController: UIViewController {
     
     var logInButton: UIButton = {
         let logInButton = UIButton()
+        // как тут доступ к alpha получить я так и не понял(сейчас все одинакого)
         logInButton.setBackgroundImage(UIImage(named: "blue_pixel"), for: .normal)
+        logInButton.setBackgroundImage(UIImage(named: "blue_pixel"), for: .selected)
+        logInButton.setBackgroundImage(UIImage(named: "blue_pixel"), for: .highlighted)
+        logInButton.setBackgroundImage(UIImage(named: "blue_pixel"), for: .disabled)
         logInButton.layer.masksToBounds = true
         logInButton.layer.cornerRadius = 10
         logInButton.setTitle("Log In", for: .normal)
@@ -62,16 +66,19 @@ class LogInViewController: UIViewController {
     }()
     
     @objc func openProfileHeaderView() {
-        let oneone = self.storyboard?.instantiateViewController(identifier: "FED") as! ProfileViewController
-        navigationController?.pushViewController(oneone, animated: true)
+            let profileViewController = ProfileViewController()
+            navigationController?.pushViewController(profileViewController, animated: true)
+          }
         
-    }
+// для запуска из сториборда
+//        let oneone = self.storyboard?.instantiateViewController(identifier: "FED") as! ProfileViewController
+//        navigationController?.pushViewController(oneone, animated: true)
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
         view.backgroundColor = .white
-        
     }
     
     
@@ -161,7 +168,6 @@ class LogInViewController: UIViewController {
         ]
         
         NSLayoutConstraint.activate(constraints)
-       
     }
     
 }
