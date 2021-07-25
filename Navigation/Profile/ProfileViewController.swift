@@ -31,9 +31,6 @@ class ProfileViewController: UIViewController {
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: cellID)
         tableView.dataSource = self
         tableView.delegate = self
-        
-        //зарегал кастомный Header
-        //       tableView.register(PostsTableHeaderView.self, forHeaderFooterViewReuseIdentifier: headerID)
     }
         
     func setupConstraints() {
@@ -43,7 +40,6 @@ class ProfileViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
         ]
-        
         NSLayoutConstraint.activate(constraints)
     }
 }
@@ -57,29 +53,24 @@ extension ProfileViewController: UITableViewDataSource {
         return cell
     }
     
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return PostView.tableModel[section].posts.count
     }
     
     
-// для кастомного хедера
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: headerID) as? PostsTableHeaderView else
-//        { return nil }
-//        headerView.section = PostView.tableModel[section]
-//        return headerView
-//    }
-    
-     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = ProfileTableHederView()
         return header
       }
+    
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 210
     }
     
 }
+
 
 extension ProfileViewController: UITableViewDelegate {
         func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

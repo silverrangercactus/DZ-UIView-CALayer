@@ -57,12 +57,14 @@ class PostTableViewCell: UITableViewCell {
         return postLikes
     }()
     
+    
     var postViews: UILabel = {
         let postViews = UILabel()
         postViews.translatesAutoresizingMaskIntoConstraints = false
         postViews.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         return postViews
     }()
+    
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -72,8 +74,8 @@ class PostTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupViews()
-        
     }
+    
     
     func setupViews() {
         contentView.addSubview(postAuthor)
@@ -84,6 +86,7 @@ class PostTableViewCell: UITableViewCell {
         
         setupConstraints()
     }
+    
     
     func setupConstraints() {
         let constraints = [

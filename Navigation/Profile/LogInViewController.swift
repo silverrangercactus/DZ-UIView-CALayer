@@ -18,8 +18,12 @@ class LogInViewController: UIViewController {
         return logoImage
     }()
     
+    
     var emailPhoneTextField: UITextField = {
         let emailPhoneTextField = UITextField()
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: emailPhoneTextField.frame.height))
+        emailPhoneTextField.leftView = paddingView
+        emailPhoneTextField.leftViewMode = UITextField.ViewMode.always
         emailPhoneTextField.backgroundColor = .systemGray6
         emailPhoneTextField.placeholder = "Email or phone"
         emailPhoneTextField.layer.masksToBounds = true
@@ -34,8 +38,12 @@ class LogInViewController: UIViewController {
         return emailPhoneTextField
     }()
     
+    
     var passwordTextField: UITextField = {
         let passwordTextField = UITextField()
+        let paddingVIew = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: passwordTextField.frame.height))
+        passwordTextField.leftView = paddingVIew
+        passwordTextField.leftViewMode = UITextField.ViewMode.always
         passwordTextField.backgroundColor = .systemGray6
         passwordTextField.placeholder = "Password"
         passwordTextField.layer.masksToBounds = true
@@ -51,9 +59,9 @@ class LogInViewController: UIViewController {
         return passwordTextField
     }()
     
+    
     var logInButton: UIButton = {
         let logInButton = UIButton()
-        // как тут доступ к alpha получить я так и не понял(сейчас все одинакого)
         logInButton.setBackgroundImage(UIImage(named: "blue_pixel"), for: .normal)
         logInButton.setBackgroundImage(UIImage(named: "blue_pixel"), for: .selected)
         logInButton.setBackgroundImage(UIImage(named: "blue_pixel"), for: .highlighted)
@@ -65,22 +73,17 @@ class LogInViewController: UIViewController {
         return logInButton
     }()
     
+    
     @objc func openProfileHeaderView() {
             let profileViewController = ProfileViewController()
             navigationController?.pushViewController(profileViewController, animated: true)
           }
         
-// для запуска из сториборда
-//        let oneone = self.storyboard?.instantiateViewController(identifier: "FED") as! ProfileViewController
-//        navigationController?.pushViewController(oneone, animated: true)
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
         view.backgroundColor = .white
     }
-    
     
     override func viewWillLayoutSubviews() {
         view.addSubview(scrollView)
@@ -131,7 +134,6 @@ class LogInViewController: UIViewController {
         
         scrollView.isScrollEnabled = true
    
-        
         let constraints = [
             
             scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),

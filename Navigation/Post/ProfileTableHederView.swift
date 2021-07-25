@@ -19,6 +19,7 @@ class ProfileTableHederView: UIView {
         return allView
     }()
     
+    
     var avatarImage: UIImageView = {
         let avatarImage = UIImageView()
         avatarImage.image = UIImage(named: "ava")
@@ -29,6 +30,7 @@ class ProfileTableHederView: UIView {
         return avatarImage
     }()
     
+    
     var titleName: UILabel = {
         let titleName = UILabel()
         titleName.text = "Miss cowboy Cactus"
@@ -36,6 +38,7 @@ class ProfileTableHederView: UIView {
         titleName.textColor = .black
         return titleName
     }()
+    
     
     var commentView: UILabel = {
         let commentView = UILabel()
@@ -45,8 +48,12 @@ class ProfileTableHederView: UIView {
         return commentView
     }()
     
+    
     var setStatusView: UITextField = {
         let setStatusView = UITextField()
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: setStatusView.frame.height))
+        setStatusView.leftView = paddingView
+        setStatusView.leftViewMode = UITextField.ViewMode.always
         setStatusView.placeholder = "Set status"
         setStatusView.backgroundColor = .none
         setStatusView.layer.masksToBounds = true
@@ -59,6 +66,7 @@ class ProfileTableHederView: UIView {
         setStatusView.addTarget(self, action: #selector(statusSet), for: .editingChanged)
         return setStatusView
     }()
+    
     
     var button: UIButton = {
         let button = UIButton()
@@ -74,15 +82,16 @@ class ProfileTableHederView: UIView {
         return button
     }()
     
+    
     @objc func actionButton() {
         commentView.text = title
-        
     }
+    
     
     @objc func statusSet(_ textField: UITextField) {
         title = setStatusView.text ?? ""
-        
     }
+    
     
     override func layoutSubviews() {
             super.layoutSubviews()
@@ -130,8 +139,6 @@ class ProfileTableHederView: UIView {
                 button.trailingAnchor.constraint(equalTo: allView.trailingAnchor, constant: -16),
                 button.bottomAnchor.constraint(equalTo: allView.bottomAnchor, constant: -16),
                 button.heightAnchor.constraint(equalToConstant: 40)
-
             ])
         }
-
 }
