@@ -17,7 +17,6 @@ class PhotosViewController: UIViewController {
         photoCollection.dataSource = self
         photoCollection.backgroundColor = .white
         photoCollection.delegate = self
-        photoCollection.backgroundColor = .cyan
         return photoCollection
     }()
     
@@ -60,7 +59,7 @@ class PhotosViewController: UIViewController {
 extension PhotosViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        20
+        return PhotoView.allPhoto[section].photos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

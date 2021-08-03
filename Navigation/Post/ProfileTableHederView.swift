@@ -36,6 +36,7 @@ class ProfileTableHederView: UIView {
         titleName.text = "Miss cowboy Cactus"
         titleName.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         titleName.textColor = .black
+        titleName.textAlignment = .left
         return titleName
     }()
     
@@ -97,11 +98,13 @@ class ProfileTableHederView: UIView {
             super.layoutSubviews()
 
         addSubview(allView)
+        allView.addSubview(button)
         allView.addSubview(titleName)
-        allView.addSubview(avatarImage)
         allView.addSubview(commentView)
         allView.addSubview(setStatusView)
-        allView.addSubview(button)
+        allView.addSubview(avatarImage)
+       
+        
         
         allView.translatesAutoresizingMaskIntoConstraints = false
         avatarImage.translatesAutoresizingMaskIntoConstraints = false
@@ -129,6 +132,7 @@ class ProfileTableHederView: UIView {
                 commentView.topAnchor.constraint(equalTo: titleName.bottomAnchor, constant: 20),
                 commentView.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor, constant: 20),
                 commentView.trailingAnchor.constraint(equalTo: allView.trailingAnchor, constant: -16),
+                commentView.heightAnchor.constraint(equalToConstant: 30),
                 
                 setStatusView.topAnchor.constraint(equalTo: commentView.bottomAnchor, constant: 20),
                 setStatusView.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor, constant: 20),
@@ -142,3 +146,7 @@ class ProfileTableHederView: UIView {
             ])
         }
 }
+    
+    
+    
+   
