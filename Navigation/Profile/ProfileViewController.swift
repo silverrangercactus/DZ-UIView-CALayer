@@ -44,7 +44,7 @@ class ProfileViewController: UIViewController {
 
     func setupTableView() {
         view.addSubview(tableView)
-        tableView.addSubview(ghostView)
+        view.addSubview(ghostView)
         view.addSubview(closeButton)
 
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -83,7 +83,7 @@ class ProfileViewController: UIViewController {
     
     @objc func tapAvatar() {
         let animator = UIViewPropertyAnimator(duration: 0.5, curve: .linear) {
-            self.profileTableHederView.avatarImage.center = self.view.center
+            self.profileTableHederView.avatarImage.center = CGPoint(x: self.view.bounds.width / 2, y: self.view.bounds.height / 2 - 60)
             self.profileTableHederView.avatarImage.transform = CGAffineTransform.init(scaleX: 1.01 , y: 1.01 )
             self.profileTableHederView.avatarImage.bounds = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.width)
             self.profileTableHederView.avatarImage.layer.cornerRadius = 0
