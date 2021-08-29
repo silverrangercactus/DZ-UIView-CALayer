@@ -13,12 +13,6 @@ class ProfileTableHederView: UIView {
 
     var title: String = ""
     
-    var allView: UIView = {
-        let allView = UIView()
-        allView.backgroundColor = .lightGray
-        return allView
-    }()
-    
     
     var avatarImage: UIImageView = {
         let avatarImage = UIImageView()
@@ -83,6 +77,21 @@ class ProfileTableHederView: UIView {
         return button
     }()
     
+    var ghostView: UIView = {
+        let ghostView = UIView()
+        ghostView.backgroundColor = .white
+        ghostView.alpha = 0
+        ghostView.translatesAutoresizingMaskIntoConstraints = false
+        return ghostView
+    }()
+    
+    var closeButton: UIButton = {
+        let closeButton = UIButton()
+        closeButton.setBackgroundImage(UIImage(systemName: "clear"), for: .normal)
+        closeButton.alpha = 0
+        closeButton.translatesAutoresizingMaskIntoConstraints = false
+        return closeButton
+    }()
     
     @objc func actionButton() {
         commentView.text = title
@@ -94,58 +103,125 @@ class ProfileTableHederView: UIView {
     }
     
     
-    override func layoutSubviews() {
-            super.layoutSubviews()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        animated()
+        closeAnimated()
 
-        addSubview(allView)
-        allView.addSubview(button)
-        allView.addSubview(titleName)
-        allView.addSubview(commentView)
-        allView.addSubview(setStatusView)
-        allView.addSubview(avatarImage)
-       
-        
-        
-        allView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(button)
+        addSubview(titleName)
+        addSubview(commentView)
+        addSubview(setStatusView)
+        addSubview(avatarImage)
+
         avatarImage.translatesAutoresizingMaskIntoConstraints = false
         titleName.translatesAutoresizingMaskIntoConstraints = false
         commentView.translatesAutoresizingMaskIntoConstraints = false
         setStatusView.translatesAutoresizingMaskIntoConstraints = false
         button.translatesAutoresizingMaskIntoConstraints = false
-        
+      
             NSLayoutConstraint.activate([
-                allView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-                allView.leadingAnchor.constraint(equalTo: leadingAnchor),
-                allView.trailingAnchor.constraint(equalTo: trailingAnchor),
-                allView.heightAnchor.constraint(equalToConstant: 210),
-        
-              
-                avatarImage.leadingAnchor.constraint(equalTo: allView.leadingAnchor, constant: 16),
-                avatarImage.topAnchor.constraint(equalTo: allView.topAnchor, constant: 20),
-                avatarImage.widthAnchor.constraint(equalToConstant: 120),
-                avatarImage.heightAnchor.constraint(equalTo: avatarImage.widthAnchor),
+
+                avatarImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
+                avatarImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+                avatarImage.heightAnchor.constraint(equalToConstant: 120),
+                avatarImage.widthAnchor.constraint(equalTo: avatarImage.heightAnchor),
                 
-                titleName.topAnchor.constraint(equalTo: allView.topAnchor, constant: 20),
+                titleName.topAnchor.constraint(equalTo: self.topAnchor, constant: 27),
                 titleName.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor, constant: 20),
-                titleName.trailingAnchor.constraint(equalTo: allView.trailingAnchor, constant: -16),
+                titleName.heightAnchor.constraint(equalToConstant: 18),
                 
-                commentView.topAnchor.constraint(equalTo: titleName.bottomAnchor, constant: 20),
+                button.topAnchor.constraint(equalTo: avatarImage.bottomAnchor, constant: 32),
+                button.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+                button.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+                button.heightAnchor.constraint(equalToConstant: 50),
+                button.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16),
+                
+                setStatusView.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor, constant: 16),
+                setStatusView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+                setStatusView.bottomAnchor.constraint(equalTo: button.topAnchor, constant: -10),
+                setStatusView.heightAnchor.constraint(equalToConstant: 40),
+                
                 commentView.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor, constant: 20),
-                commentView.trailingAnchor.constraint(equalTo: allView.trailingAnchor, constant: -16),
-                commentView.heightAnchor.constraint(equalToConstant: 30),
-                
-                setStatusView.topAnchor.constraint(equalTo: commentView.bottomAnchor, constant: 20),
-                setStatusView.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor, constant: 20),
-                setStatusView.trailingAnchor.constraint(equalTo: allView.trailingAnchor, constant: -16),
-                setStatusView.heightAnchor.constraint(equalToConstant: 30),
-                
-                button.leadingAnchor.constraint(equalTo: allView.leadingAnchor, constant: 16),
-                button.trailingAnchor.constraint(equalTo: allView.trailingAnchor, constant: -16),
-                button.bottomAnchor.constraint(equalTo: allView.bottomAnchor, constant: -16),
-                button.heightAnchor.constraint(equalToConstant: 40)
+                commentView.bottomAnchor.constraint(equalTo: setStatusView.topAnchor, constant: -20),
+                commentView.heightAnchor.constraint(equalToConstant: 20),
             ])
         }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func ghostViewSetup(_ viewNew: UIView)  {
+       
+        viewNew.addSubview(ghostView)
+        viewNew.addSubview(closeButton)
+                
+        ghostView.translatesAutoresizingMaskIntoConstraints = false
+        closeButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+                ghostView.bottomAnchor.constraint(equalTo: viewNew.bottomAnchor),
+                ghostView.leadingAnchor.constraint(equalTo: viewNew.leadingAnchor),
+                ghostView.trailingAnchor.constraint(equalTo: viewNew.trailingAnchor),
+                ghostView.topAnchor.constraint(equalTo: viewNew.topAnchor),
+    
+                closeButton.topAnchor.constraint(equalTo: viewNew.safeAreaLayoutGuide.topAnchor, constant: 20),
+                closeButton.trailingAnchor.constraint(equalTo: viewNew.trailingAnchor, constant: -20),
+                closeButton.widthAnchor.constraint(equalToConstant: 30),
+                closeButton.heightAnchor.constraint(equalTo: closeButton.widthAnchor),
+        ])
+    }
+    
+    func animated() {
+          let tapAvatarImage = UITapGestureRecognizer(target: self, action: #selector(tapAvatar))
+          avatarImage.addGestureRecognizer(tapAvatarImage)
+          avatarImage.isUserInteractionEnabled = true
+      }
+  
+      @objc func tapAvatar() {
+          let animator = UIViewPropertyAnimator(duration: 0.5, curve: .linear) {
+            self.avatarImage.center = CGPoint(x: self.frame.width/2, y: self.frame.height * 2 - 60)
+              self.avatarImage.transform = CGAffineTransform.init(scaleX: 1.01 , y: 1.01 )
+              self.avatarImage.bounds = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.width)
+              self.avatarImage.layer.cornerRadius = 0
+              self.ghostView.alpha = 0.7
+              self.ghostView.isUserInteractionEnabled = true
+          }
+  
+          animator.startAnimation()
+  
+          let animator2 = UIViewPropertyAnimator(duration: 0.3, curve: .linear) {
+              self.closeButton.alpha = 1
+          }
+          animator2.startAnimation(afterDelay: 0.5)
+      }
+    
+    func closeAnimated() {
+            let tapCloseButton = UITapGestureRecognizer(target: self, action: #selector(tapButton))
+            closeButton.addGestureRecognizer(tapCloseButton)
+        }
+    
+        @objc func tapButton() {
+            let animator = UIViewPropertyAnimator(duration: 0.3, curve: .linear) {
+                self.closeButton.alpha = 0
+            }
+            animator.startAnimation()
+    
+            let animator2 = UIViewPropertyAnimator(duration: 0.5, curve: .linear) {
+                self.ghostView.alpha = 0
+                self.avatarImage.frame = CGRect(x: 16, y: 16, width: 120, height: 120)
+                self.avatarImage.transform = CGAffineTransform.init(scaleX: 1, y: 1)
+                self.avatarImage.layer.masksToBounds = true
+                self.avatarImage.layer.cornerRadius = 60
+                self.avatarImage.layer.borderWidth = 3
+                self.ghostView.isUserInteractionEnabled = false
+            }
+            animator2.startAnimation(afterDelay: 0.3)
+        }
 }
+
     
     
     
