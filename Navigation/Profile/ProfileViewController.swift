@@ -8,8 +8,12 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
-        
+class ProfileViewController: UIViewController, ProfileTableHeaderViewDelegate {
+    
+    var tableW: UITableView?
+    
+    var viewW: UIView?
+  
     var tableView = UITableView(frame: .zero, style: .grouped)
     var cellID = "cellID"
     var cellID1 = "cellID1"
@@ -75,7 +79,9 @@ extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
             let headerView = profileTableHederView
-            headerView.ghostViewSetup(view)
+            headerView.delegate = self
+            headerView.delegate?.viewW = view
+            headerView.delegate?.tableW = self.tableView
             return headerView
         } else {
             return .none
@@ -103,5 +109,4 @@ extension ProfileViewController: UITableViewDelegate {
         }
     }
 }
-    
 

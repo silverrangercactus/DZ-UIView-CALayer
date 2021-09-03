@@ -8,8 +8,17 @@
 
 import UIKit
 
+protocol ProfileTableHeaderViewDelegate: AnyObject {
+   
+    var viewW: UIView? {get set}
+    
+    var tableW: UITableView? {get set}
+
+}
+
 class ProfileTableHederView: UIView {
 
+    weak var delegate: ProfileTableHeaderViewDelegate?
 
     var title: String = ""
     
@@ -113,7 +122,12 @@ class ProfileTableHederView: UIView {
         addSubview(titleName)
         addSubview(commentView)
         addSubview(setStatusView)
+        addSubview(ghostView)
         addSubview(avatarImage)
+        addSubview(closeButton)
+     
+             ghostView.translatesAutoresizingMaskIntoConstraints = false
+             closeButton.translatesAutoresizingMaskIntoConstraints = false
 
         avatarImage.translatesAutoresizingMaskIntoConstraints = false
         titleName.translatesAutoresizingMaskIntoConstraints = false
@@ -146,6 +160,7 @@ class ProfileTableHederView: UIView {
                 commentView.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor, constant: 20),
                 commentView.bottomAnchor.constraint(equalTo: setStatusView.topAnchor, constant: -20),
                 commentView.heightAnchor.constraint(equalToConstant: 20),
+                
             ])
         }
     
@@ -153,11 +168,14 @@ class ProfileTableHederView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func ghostViewSetup(_ viewNew: UIView)  {
+    override func layoutSubviews() {
+        ghostViewSetup()
+    }
+    
+    
+    func ghostViewSetup()  {
        
-        viewNew.addSubview(ghostView)
-        viewNew.addSubview(closeButton)
-                
+        if let viewNew = delegate?.viewW {
         ghostView.translatesAutoresizingMaskIntoConstraints = false
         closeButton.translatesAutoresizingMaskIntoConstraints = false
         
@@ -172,6 +190,7 @@ class ProfileTableHederView: UIView {
                 closeButton.widthAnchor.constraint(equalToConstant: 30),
                 closeButton.heightAnchor.constraint(equalTo: closeButton.widthAnchor),
         ])
+        }
     }
     
     func animated() {
@@ -188,6 +207,8 @@ class ProfileTableHederView: UIView {
               self.avatarImage.layer.cornerRadius = 0
               self.ghostView.alpha = 0.7
               self.ghostView.isUserInteractionEnabled = true
+            self.avatarImage.isUserInteractionEnabled = true
+            self.delegate?.tableW?.isScrollEnabled = false
           }
   
           animator.startAnimation()
@@ -217,6 +238,7 @@ class ProfileTableHederView: UIView {
                 self.avatarImage.layer.cornerRadius = 60
                 self.avatarImage.layer.borderWidth = 3
                 self.ghostView.isUserInteractionEnabled = false
+                self.delegate?.tableW?.isScrollEnabled = true
             }
             animator2.startAnimation(afterDelay: 0.3)
         }
