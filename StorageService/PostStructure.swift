@@ -8,21 +8,22 @@
 
 import UIKit
 
-struct Posts {
-    var author: String
-    var description: String
-    var image: UIImage
-    var likes: String
-    var views: String
+
+public struct Posts {
+    public var author: String
+    public var description: String
+    public var image: UIImage
+    public var likes: String
+    public var views: String
 }
 
-struct PostSection {
-    var title: String
-    var posts: [Posts]
+public struct PostSection {
+    public var title: String
+    public var posts: [Posts]
 }
 
-struct PostView {
-    static let tableModel = [
+public struct PostView {
+    public static let tableModel = [
         PostSection(title: "МОЯ ЛЕНТА", posts: [
    
         Posts(author: "Fed", description: "Guess who's birthday is coming soon?",
