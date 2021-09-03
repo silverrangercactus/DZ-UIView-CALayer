@@ -207,8 +207,8 @@ class ProfileTableHederView: UIView {
               self.avatarImage.layer.cornerRadius = 0
               self.ghostView.alpha = 0.7
               self.ghostView.isUserInteractionEnabled = true
-            self.avatarImage.isUserInteractionEnabled = true
             self.delegate?.tableW?.isScrollEnabled = false
+            self.delegate?.tableW?.allowsSelection = false
           }
   
           animator.startAnimation()
@@ -239,6 +239,9 @@ class ProfileTableHederView: UIView {
                 self.avatarImage.layer.borderWidth = 3
                 self.ghostView.isUserInteractionEnabled = false
                 self.delegate?.tableW?.isScrollEnabled = true
+                self.delegate?.tableW?.allowsSelection = true
+
+
             }
             animator2.startAnimation(afterDelay: 0.3)
         }
