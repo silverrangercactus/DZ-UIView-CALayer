@@ -11,9 +11,9 @@ import StorageService
 
 class ProfileViewController: UIViewController, ProfileTableHeaderViewDelegate {
     
-    var tableW: UITableView?
+    var tableW: UITableView? {tableView}
     
-    var viewW: UIView?
+    var viewW: UIView? {view}
   
     var tableView = UITableView(frame: .zero, style: .grouped)
     var cellID = "cellID"
@@ -87,8 +87,8 @@ extension ProfileViewController: UITableViewDelegate {
         if section == 0 {
             let headerView = profileTableHederView
             headerView.delegate = self
-            headerView.delegate?.viewW = view
-            headerView.delegate?.tableW = self.tableView
+//            headerView.delegate?.viewW = view
+//            headerView.delegate?.tableW = self.tableView
             return headerView
         } else {
             return .none
