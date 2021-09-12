@@ -12,10 +12,10 @@ import UIKit
 struct Photo {
     var image: UIImage
     
-    var image1 = UIImage(named: "Файл 1")
-    var image2 = UIImage(named: "Файл 2")
-    var image3 = UIImage(named: "Файл 3")
-    var image4 = UIImage(named: "Файл 4")
+    var image1 = UIImage(named: "Cactuss1")
+    var image2 = UIImage(named: "Cactuss2")
+    var image3 = UIImage(named: "Cactuss3")
+    var image4 = UIImage(named: "Cactuss4")
 }
 
 struct PhotoSection {
@@ -27,26 +27,26 @@ struct PhotoView {
     static let allPhoto = [
         PhotoSection(title: "Мои Фото", photos: [
     
-    Photo(image: UIImage(named: "Файл 1")!),
-    Photo(image: UIImage(named: "Файл 2")!),
-    Photo(image: UIImage(named: "Файл 3")!),
-    Photo(image: UIImage(named: "Файл 4")!),
-    Photo(image: UIImage(named: "Файл 5")!),
-    Photo(image: UIImage(named: "Файл 6")!),
-    Photo(image: UIImage(named: "Файл 7")!),
-    Photo(image: UIImage(named: "Файл 8")!),
-    Photo(image: UIImage(named: "Файл 9")!),
-    Photo(image: UIImage(named: "Файл 10")!),
-    Photo(image: UIImage(named: "Файл 11")!),
-    Photo(image: UIImage(named: "Файл 12")!),
-    Photo(image: UIImage(named: "Файл 13")!),
-    Photo(image: UIImage(named: "Файл 14")!),
-    Photo(image: UIImage(named: "Файл 15")!),
-    Photo(image: UIImage(named: "Файл 16")!),
-    Photo(image: UIImage(named: "Файл 17")!),
-    Photo(image: UIImage(named: "Файл 18")!),
-    Photo(image: UIImage(named: "Файл 19")!),
-    Photo(image: UIImage(named: "Файл 20")!)
+    Photo(image: UIImage(named: "Cactuss1")!),
+    Photo(image: UIImage(named: "Cactuss2")!),
+    Photo(image: UIImage(named: "Cactuss3")!),
+    Photo(image: UIImage(named: "Cactuss4")!),
+    Photo(image: UIImage(named: "Cactuss5")!),
+    Photo(image: UIImage(named: "Cactuss6")!),
+    Photo(image: UIImage(named: "Cactuss7")!),
+    Photo(image: UIImage(named: "Cactuss8")!),
+    Photo(image: UIImage(named: "Cactuss9")!),
+    Photo(image: UIImage(named: "Cactuss10")!),
+    Photo(image: UIImage(named: "Cactuss11")!),
+    Photo(image: UIImage(named: "Cactuss12")!),
+    Photo(image: UIImage(named: "Cactuss13")!),
+    Photo(image: UIImage(named: "Cactuss14")!),
+    Photo(image: UIImage(named: "Cactuss15")!),
+    Photo(image: UIImage(named: "Cactuss16")!),
+    Photo(image: UIImage(named: "Cactuss17")!),
+    Photo(image: UIImage(named: "Cactuss18")!),
+    Photo(image: UIImage(named: "Cactuss19")!),
+    Photo(image: UIImage(named: "Cactuss20")!)
     ]) 
     ]
 }
