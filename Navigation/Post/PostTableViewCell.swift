@@ -12,6 +12,8 @@ import iOSIntPackage
 
 class PostTableViewCell: UITableViewCell {
 
+    var avatarProcess = ImageProcessor()
+    
     var posts: Posts? {
         didSet {
             postAuthor.text = posts?.author
@@ -19,9 +21,10 @@ class PostTableViewCell: UITableViewCell {
             postDescription.text = posts?.description
             postLikes.text = posts?.likes
             postViews.text = posts?.views
+            self.avatarProcess.processImage(sourceImage: self.postImage.image!, filter: .bloom(intensity: 5.0)) { filterImage in self.postImage.image = filterImage }
         }
     }
-    
+ 
     var postAuthor: UILabel = {
         let postAuthor = UILabel()
         postAuthor.translatesAutoresizingMaskIntoConstraints = false

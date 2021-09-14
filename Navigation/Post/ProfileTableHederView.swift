@@ -8,7 +8,6 @@
 
 import UIKit
 import SnapKit
-import iOSIntPackage
 
 protocol ProfileTableHeaderViewDelegate: AnyObject {
    
@@ -23,9 +22,7 @@ class ProfileTableHederView: UIView {
     weak var delegate: ProfileTableHeaderViewDelegate?
 
     var title: String = ""
-    
-    var avatarProcess = ImageProcessor()
-    
+        
     var avatarImage: UIImageView = {
         let avatarImage = UIImageView()
         avatarImage.image = UIImage(named: "ava")
@@ -156,7 +153,7 @@ class ProfileTableHederView: UIView {
         setStatusView.snp.makeConstraints { maker in
             maker.top.equalTo(commentView.snp.bottom).offset(20)
             maker.left.equalTo(avatarImage.snp.right).offset(16)
-            maker.right.equalToSuperview().offset(-16)
+            maker.right.equalToSuperview().inset(16)
             maker.height.equalTo(40)
         }
     }
@@ -174,12 +171,12 @@ class ProfileTableHederView: UIView {
        
         if let viewNew = delegate?.viewW {
             ghostView.snp.makeConstraints { maker in
-                maker.top.bottom.left.right.equalTo(viewNew).inset(0)
+                maker.top.bottom.left.right.equalTo(viewNew)
             }
             
             closeButton.snp.makeConstraints { maker in
                 maker.top.equalTo(viewNew.safeAreaInsets).offset(20)
-                maker.right.equalTo(viewNew).offset(-20)
+                maker.right.equalTo(viewNew).inset(20)
                 maker.height.width.equalTo(30)
             }
         }
@@ -201,8 +198,7 @@ class ProfileTableHederView: UIView {
               self.ghostView.isUserInteractionEnabled = true
             self.delegate?.tableW?.isScrollEnabled = false
             self.delegate?.tableW?.allowsSelection = false
-            self.avatarProcess.processImage(sourceImage: self.avatarImage.image!, filter: .bloom(intensity: 5.0)) { ololo in
-                    self.avatarImage.image = ololo }
+            
         }
        
         
@@ -235,7 +231,6 @@ class ProfileTableHederView: UIView {
                 self.ghostView.isUserInteractionEnabled = false
                 self.delegate?.tableW?.isScrollEnabled = true
                 self.delegate?.tableW?.allowsSelection = true
-                self.avatarImage.image = UIImage(named: "ava")
             }
             animator2.startAnimation(afterDelay: 0.3)
         }
