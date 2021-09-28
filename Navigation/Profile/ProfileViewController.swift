@@ -21,16 +21,29 @@ class ProfileViewController: UIViewController, ProfileTableHeaderViewDelegate {
     
     var profileTableHederView = ProfileTableHederView()
     
+    var userServiceProperty: UserService
+    var userName: String
+    
+    init(userServiceProperty: UserService, userName: String) {
+        self.userServiceProperty = userServiceProperty
+        self.userName = userName
+        super .init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //view.backgroundColor = .white
         setupTableView()
         setupConstraints()
+        userData()
         
         #if DEBUG
         view.backgroundColor = .red
         #else
-        view.backgroundColor = .blue
+        view.backgroundColor = .white
         #endif
     }
 
@@ -52,6 +65,14 @@ class ProfileViewController: UIViewController, ProfileTableHeaderViewDelegate {
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
         ]
         NSLayoutConstraint.activate(constraints)
+    }
+    
+    func userData() {
+        if let user = self.userServiceProperty.returnUser(name: self.userName) {
+            profileTableHederView.titleName.text = user.name
+            profileTableHederView.avatarImage.image = user.avatar
+            profileTableHederView.commentView.text = user.status
+        }
     }
 }
 
@@ -87,8 +108,6 @@ extension ProfileViewController: UITableViewDelegate {
         if section == 0 {
             let headerView = profileTableHederView
             headerView.delegate = self
-//            headerView.delegate?.viewW = view
-//            headerView.delegate?.tableW = self.tableView
             return headerView
         } else {
             return .none

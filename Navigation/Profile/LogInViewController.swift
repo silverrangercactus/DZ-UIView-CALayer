@@ -63,9 +63,6 @@ class LogInViewController: UIViewController {
     var logInButton: UIButton = {
         let logInButton = UIButton()
         logInButton.setBackgroundImage(UIImage(named: "blue_pixel"), for: .normal)
-        logInButton.setBackgroundImage(UIImage(named: "blue_pixel"), for: .selected)
-        logInButton.setBackgroundImage(UIImage(named: "blue_pixel"), for: .highlighted)
-        logInButton.setBackgroundImage(UIImage(named: "blue_pixel"), for: .disabled)
         logInButton.layer.masksToBounds = true
         logInButton.layer.cornerRadius = 10
         logInButton.setTitle("Log In", for: .normal)
@@ -73,12 +70,28 @@ class LogInViewController: UIViewController {
         return logInButton
     }()
     
+    var currentUserService = CurrentUserService()
+    var testUserService = TestUserService()
+    
     
     @objc func openProfileHeaderView() {
-            let profileViewController = ProfileViewController()
-            navigationController?.pushViewController(profileViewController, animated: true)
-          }
         
+        #if DEBUG
+        if let userName = emailPhoneTextField.text {
+            let profileVC = ProfileViewController(userServiceProperty: testUserService, userName: userName)
+                navigationController?.pushViewController(profileVC, animated: true)
+            }
+        #else
+        if let userName = emailPhoneTextField.text,
+           let _ = currentUserService.returnUser(name: userName) {
+                let profileVC = ProfileViewController(userServiceProperty: currentUserService, userName: userName)
+                navigationController?.pushViewController(profileVC, animated: true)
+        } else {
+            print("Error")
+        }
+        #endif
+}
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
