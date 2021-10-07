@@ -86,7 +86,6 @@ extension ProfileViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cellPhoto = tableView.dequeueReusableCell(withIdentifier: cellID1) as! PhotoTableViewCell
-            cellPhoto.photo = PhotoView.allPhoto[0].photos[indexPath.row]
             return cellPhoto
         } else {
             let cellPost = tableView.dequeueReusableCell(withIdentifier: cellID) as! PostTableViewCell
@@ -126,10 +125,7 @@ extension ProfileViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.section == 0 {
-            let photos = PhotoView.allPhoto[0].photos[indexPath.row]
-            (cell as! PhotoTableViewCell).photo = photos
-        } else {
+        if indexPath.section == 1 {
             let posts = PostView.tableModel[0].posts[indexPath.row]
             (cell as! PostTableViewCell).posts = posts
         }

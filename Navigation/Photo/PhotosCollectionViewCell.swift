@@ -10,9 +10,9 @@ import UIKit
 
 class PhotosCollectionViewCell: UICollectionViewCell {
    
-    var photo: Photo? {
+    var photo: UIImage? {
         didSet {
-            photoOne.image = photo?.image
+            photoOne.image = photo
         }
     }
 

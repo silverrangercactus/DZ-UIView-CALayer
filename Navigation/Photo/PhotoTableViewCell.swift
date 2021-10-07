@@ -10,16 +10,6 @@ import UIKit
 
 class PhotoTableViewCell: UITableViewCell {
 
-   
-    var photo: Photo? {
-        didSet {
-            photoOne.image = photo?.image1
-            photoTwo.image = photo?.image2
-            photoThree.image = photo?.image3
-            photoFour.image = photo?.image4
-        }
-    }
-    
     
     var photoLabel: UILabel = {
         let photoLabel = UILabel()
@@ -72,7 +62,6 @@ class PhotoTableViewCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setupViews()
     }
     
     func setupViews() {
@@ -82,6 +71,11 @@ class PhotoTableViewCell: UITableViewCell {
         contentView.addSubview(photoTwo)
         contentView.addSubview(photoThree)
         contentView.addSubview(photoFour)
+        
+        photoOne.image = UIImage(named: "Cactuss1")
+        photoTwo.image = UIImage(named: "Cactuss2")
+        photoThree.image = UIImage(named: "Cactuss3")
+        photoFour.image = UIImage(named: "Cactuss4")
         
         setupConstraints()
     }
