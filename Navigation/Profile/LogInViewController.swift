@@ -10,6 +10,8 @@ import UIKit
 
 class LogInViewController: UIViewController {
     
+    var delegate: LogInViewControllerDelegate?
+    
     let scrollView = UIScrollView()
     
     var logoImage: UIImageView = {
@@ -82,12 +84,19 @@ class LogInViewController: UIViewController {
                 navigationController?.pushViewController(profileVC, animated: true)
             }
         #else
+//        if let userName = emailPhoneTextField.text,
+//           let _ = currentUserService.returnUser(name: userName) {
+//                let profileVC = ProfileViewController(userServiceProperty: currentUserService, userName: userName)
+//                navigationController?.pushViewController(profileVC, animated: true)
+//        } else {
+//            print("Error")
+//        }
         if let userName = emailPhoneTextField.text,
-           let _ = currentUserService.returnUser(name: userName) {
-                let profileVC = ProfileViewController(userServiceProperty: currentUserService, userName: userName)
-                navigationController?.pushViewController(profileVC, animated: true)
+           delegate?.checkLoginPass(enterLogin: userName, enterPass: passwordTextField.text ?? "") == true {
+            let profileVC = ProfileViewController(userServiceProperty: currentUserService, userName: userName)
+            navigationController?.pushViewController(profileVC, animated: true)
         } else {
-            print("Error")
+            print("NONONON")
         }
         #endif
 }
