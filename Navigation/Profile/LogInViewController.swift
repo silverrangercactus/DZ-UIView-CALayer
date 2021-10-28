@@ -10,6 +10,8 @@ import UIKit
 
 class LogInViewController: UIViewController {
     
+    var loginFactory: MyLoginFactory?
+    
     var delegate: LogInViewControllerDelegate?
     
     let scrollView = UIScrollView()
@@ -61,46 +63,33 @@ class LogInViewController: UIViewController {
         return passwordTextField
     }()
     
+    private lazy var logInButton: CustomButton = {
+        let logInButton = CustomButton(title: "Log In", titleColor: .white) { [self] in
+
+            #if DEBUG
+            let userService = TestUserService()
+            #else
+            let userService = CurrentUserService()
+            #endif
     
-    var logInButton: UIButton = {
-        let logInButton = UIButton()
+    
+            if let username = emailPhoneTextField.text,
+               let inspector = loginFactory?.factoryLogin,
+            inspector().checkLoginPass(enterLogin: username, enterPass: passwordTextField.text ?? "") == true {
+                let profileVC = ProfileViewController(userServiceProperty: userService, userName: username)
+                navigationController?.pushViewController(profileVC, animated: true)
+            } else {
+               print("ololo")
+            }
+        }
+        
         logInButton.setBackgroundImage(UIImage(named: "blue_pixel"), for: .normal)
         logInButton.layer.masksToBounds = true
         logInButton.layer.cornerRadius = 10
-        logInButton.setTitle("Log In", for: .normal)
-        logInButton.addTarget(self, action: #selector(openProfileHeaderView), for: .touchUpInside)
         return logInButton
     }()
-    
-    var currentUserService = CurrentUserService()
-    var testUserService = TestUserService()
-    
-    
-    @objc func openProfileHeaderView() {
-        
-        #if DEBUG
-        if let userName = emailPhoneTextField.text {
-            let profileVC = ProfileViewController(userServiceProperty: testUserService, userName: userName)
-                navigationController?.pushViewController(profileVC, animated: true)
-            }
-        #else
-//        if let userName = emailPhoneTextField.text,
-//           let _ = currentUserService.returnUser(name: userName) {
-//                let profileVC = ProfileViewController(userServiceProperty: currentUserService, userName: userName)
-//                navigationController?.pushViewController(profileVC, animated: true)
-//        } else {
-//            print("Error")
-//        }
-        if let userName = emailPhoneTextField.text,
-           delegate?.checkLoginPass(enterLogin: userName, enterPass: passwordTextField.text ?? "") == true {
-            let profileVC = ProfileViewController(userServiceProperty: currentUserService, userName: userName)
-            navigationController?.pushViewController(profileVC, animated: true)
-        } else {
-            print("NONONON")
-        }
-        #endif
-}
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true

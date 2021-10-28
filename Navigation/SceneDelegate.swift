@@ -14,7 +14,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     //ДЗ 4 часть 1
     //var inspector = LoginInspector()
-
+    
+    //ДЗ 4 часть 2
+    var inspectorFactory = MyLoginFactory()
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
@@ -28,7 +31,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             
             
             //ДЗ 4 часть 2
-            loginController.delegate = MyLoginFactory.myLoginFactory.factoryLogin()
+            loginController.loginFactory = inspectorFactory
             }
     }
 

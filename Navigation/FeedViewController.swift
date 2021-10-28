@@ -7,63 +7,53 @@
 //
 
 import UIKit
+import SnapKit
 
 final class FeedViewController: UIViewController {
     
-    let post: Post = Post(title: "Пост")
+    var someButton: UIButton = {
+        let someButton = UIButton()
+        someButton.setTitle("Touch Me", for: .normal)
+        someButton.setTitleColor(.white, for: .normal)
+        someButton.setBackgroundImage(UIImage(named: "blue_pixel"), for: .normal)
+        someButton.layer.masksToBounds = true
+        someButton.layer.cornerRadius = 10
+        return someButton
+    }()
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        print(type(of: self), #function)
-    }
     
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        print(type(of: self), #function)
-    }
+    var someTextField: CustomTextField = {
+        let someTextField = CustomTextField(textColor: .white, backgroundColor: .systemGray5, placeholderText: "^_^")
+        return someTextField
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(type(of: self), #function)
+        self.navigationController?.isNavigationBarHidden = true
+        view.backgroundColor = .white
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        print(type(of: self), #function)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        print(type(of: self), #function)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        print(type(of: self), #function)
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        print(type(of: self), #function)
-    }
     
     override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        print(type(of: self), #function)
+        view.addSubview(someButton)
+        view.addSubview(someTextField)
+        
+        settingUI()
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        print(type(of: self), #function)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "post" else {
-            return
+    func settingUI() {
+        
+        someButton.snp.makeConstraints { make in
+            make.height.equalTo(50)
+            make.left.right.equalToSuperview().inset(50)
+            make.bottom.equalToSuperview().inset(150)
         }
-        guard let postViewController = segue.destination as? PostViewController else {
-            return
+        
+        someTextField.snp.makeConstraints { make in
+            make.height.equalTo(50)
+            make.left.right.equalToSuperview().inset(16)
+            make.centerY.equalTo(view.snp.centerY)
         }
-        postViewController.post = post
     }
 }
