@@ -8,8 +8,21 @@
 
 import Foundation
 
+enum CheckWorld {
+    case empty, correct, incorrect
+}
+
 class RandomWord {
     
-    private var word = "пароль"
+    private var safeWord = "Пароль"
     
+    func check(word: String, completion: (CheckWorld) -> Void) {
+        if word == "" {
+            completion(.empty)
+        } else if word == safeWord {
+            completion(.correct)
+        } else {
+            completion(.incorrect)
+        }
+    }
 }

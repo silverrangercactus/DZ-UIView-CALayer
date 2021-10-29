@@ -18,6 +18,7 @@
 		200CD11226A6E2D10099917F /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200CD11126A6E2D10099917F /* PostTableViewCell.swift */; };
 		200E5FBA272A86220049CB6C /* RandomWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200E5FB9272A86220049CB6C /* RandomWord.swift */; };
 		200E5FBC272A91B90049CB6C /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200E5FBB272A91B90049CB6C /* CustomTextField.swift */; };
+		200E5FBE272ACECF0049CB6C /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200E5FBD272ACECF0049CB6C /* TabBarController.swift */; };
 		201487B026A80576001523AD /* ProfileTableHederView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201487AF26A80576001523AD /* ProfileTableHederView.swift */; };
 		201817CC26E2941900B504C6 /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 201817C326E2941800B504C6 /* StorageService.framework */; };
 		201817D326E2941900B504C6 /* StorageServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201817D226E2941900B504C6 /* StorageServiceTests.swift */; };
@@ -104,6 +105,7 @@
 		200CD11126A6E2D10099917F /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		200E5FB9272A86220049CB6C /* RandomWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomWord.swift; sourceTree = "<group>"; };
 		200E5FBB272A91B90049CB6C /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		200E5FBD272ACECF0049CB6C /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		201487AF26A80576001523AD /* ProfileTableHederView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableHederView.swift; sourceTree = "<group>"; };
 		201817C326E2941800B504C6 /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		201817C526E2941800B504C6 /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 				060782C5250CEB0A00A87020 /* InfoViewController.swift */,
 				060782C7250CEE5D00A87020 /* PostViewController.swift */,
 				060782C9250CEE7200A87020 /* Post.swift */,
+				200E5FBD272ACECF0049CB6C /* TabBarController.swift */,
 				200E5FB8272A85D50049CB6C /* Model */,
 				20983CF5272939FB0013D681 /* CustomsUI */,
 				206B5E642705960400992C93 /* Login */,
@@ -580,6 +583,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				200E5FBA272A86220049CB6C /* RandomWord.swift in Sources */,
+				200E5FBE272ACECF0049CB6C /* TabBarController.swift in Sources */,
 				204C13182701B30F00986AF9 /* CurrentUserService.swift in Sources */,
 				206B5E6127057E1A00992C93 /* Checker.swift in Sources */,
 				060782B6250CE27700A87020 /* FeedViewController.swift in Sources */,

@@ -13,12 +13,6 @@
         <scene sceneID="buX-TJ-cgc">
             <objects>
                 <viewController id="Ucx-6d-4n4" customClass="LogInViewController" customModule="Navigation" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="SCf-9r-xMO">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="f2p-Cd-mdi"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
                     <navigationItem key="navigationItem" id="Kto-8F-eAP"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yvk-gc-MaF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -45,16 +39,10 @@
         <!--Feed-->
         <scene sceneID="bye-GP-P6Y">
             <objects>
-                <viewController id="UOy-8g-tjm" customClass="FeedViewController" customModule="Navigation" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="hnQ-fB-PJI">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="rDk-lR-Mb7"/>
-                        <color key="backgroundColor" systemColor="systemGreenColor"/>
-                    </view>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zo3-uO-y7P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController id="UOy-8g-tjm" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="Feed" id="CTA-33-ygc"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zo3-uO-y7P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="743" y="-541"/>
         </scene>
@@ -149,12 +137,6 @@
     <resources>
         <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemPinkColor">
             <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

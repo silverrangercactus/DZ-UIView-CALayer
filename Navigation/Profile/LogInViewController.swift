@@ -79,7 +79,7 @@ class LogInViewController: UIViewController {
                 let profileVC = ProfileViewController(userServiceProperty: userService, userName: username)
                 navigationController?.pushViewController(profileVC, animated: true)
             } else {
-               print("ololo")
+               print("incorrect")
             }
         }
         
