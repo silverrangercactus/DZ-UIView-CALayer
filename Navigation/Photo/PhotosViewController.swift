@@ -60,8 +60,8 @@ class PhotosViewController: UIViewController {
 
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
+    
+    deinit {
         cancelSubscription()
     }
     
@@ -72,7 +72,7 @@ class PhotosViewController: UIViewController {
         publisher.addImagesWithTimer(
             time: 1,
             repeat: 20,
-            userImages: PhotoViewPublisher.allPhoto)
+            userImages: PhotoViewPublisher.allPhoto as? [UIImage])
     }
     
     func cancelSubscription() {
