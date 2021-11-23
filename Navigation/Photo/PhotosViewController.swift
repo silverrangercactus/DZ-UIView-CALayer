@@ -72,7 +72,7 @@ class PhotosViewController: UIViewController {
         publisher.addImagesWithTimer(
             time: 1,
             repeat: 20,
-            userImages: PhotoViewPublisher.allPhoto as? [UIImage])
+            userImages: PhotoViewPublisher.allPhoto.compactMap( {$0} ))
     }
     
     func cancelSubscription() {
