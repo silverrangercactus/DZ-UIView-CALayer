@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import iOSIntPackage
 
 class PhotosViewController: UIViewController {
-
+    
+    private let publisher = ImagePublisherFacade()
+    
     private lazy var photoCollection: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let photoCollection = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -24,10 +27,11 @@ class PhotosViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Photo Gallery"
+        view.backgroundColor = .white
         
+        configurePublisher()
         setupTableView()
         setupConstraints()
-       
     }
     
    
@@ -52,19 +56,42 @@ class PhotosViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.isNavigationBarHidden = true
+        photoCollection.reloadData()
+
     }
     
+    
+    deinit {
+        cancelSubscription()
+    }
+    
+    
+    func configurePublisher() {
+        publisher.subscribe(self)
+        
+        publisher.addImagesWithTimer(
+            time: 1,
+            repeat: 20,
+            userImages: PhotoViewPublisher.allPhoto.compactMap( {$0} ))
+    }
+    
+    func cancelSubscription() {
+        publisher.rechargeImageLibrary()
+        publisher.removeSubscription(for: self)
+    }
 }
     
+
+
 extension PhotosViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return PhotoView.allPhoto[section].photos.count
+        return PhotoViewPublisher.allPhoto.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = photoCollection.dequeueReusableCell(withReuseIdentifier: String(describing: PhotosCollectionViewCell.self), for: indexPath) as! PhotosCollectionViewCell
-        cell.photo = PhotoView.allPhoto[indexPath.section].photos[indexPath.row]
+        cell.photo = PhotoViewPublisher.allPhoto[indexPath.row]
         return cell
     }
     
@@ -87,3 +114,9 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+extension PhotosViewController: ImageLibrarySubscriber{
+    func receive(images: [UIImage]) {
+        PhotoViewPublisher.allPhoto = images
+        photoCollection.reloadData()
+    }
+}
