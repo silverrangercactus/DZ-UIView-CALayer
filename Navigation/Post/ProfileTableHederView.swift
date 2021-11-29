@@ -72,17 +72,15 @@ class ProfileTableHederView: UIView {
     }()
     
     
-    var button: UIButton = {
-        let button = UIButton()
+    private lazy var button: CustomButton = {
+        let button = CustomButton(title: "Show status", titleColor: .white) { [self] in
+            self.commentView.text = self.title}
         button.layer.cornerRadius = 10
         button.backgroundColor = .systemBlue
-        button.setTitleColor(.white, for: .normal)
-        button.setTitle("Show status", for: .normal)
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOffset = CGSize(width: 10, height: 10)
         button.layer.shadowOpacity = 0.7
         button.layer.shadowRadius = 10
-        button.addTarget(self, action: #selector(actionButton), for: .touchUpInside)
         return button
     }()
     
@@ -101,11 +99,6 @@ class ProfileTableHederView: UIView {
         closeButton.translatesAutoresizingMaskIntoConstraints = false
         return closeButton
     }()
-    
-    @objc func actionButton() {
-        commentView.text = title
-    }
-    
     
     @objc func statusSet(_ textField: UITextField) {
         title = setStatusView.text ?? ""
