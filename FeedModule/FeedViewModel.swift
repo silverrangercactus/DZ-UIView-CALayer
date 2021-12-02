@@ -9,12 +9,41 @@
 import UIKit
 
 protocol FeedViewOutput {
-    func updateModel()
+   
+    func updateText(_ string: String)
+    
+    var onTapCheckWord: () -> Void { get set }
+
 }
+
 
 class FeedViewModel: FeedViewOutput {
     
-    func updateModel() {
-    
+    var checkerr: RandomWord
+        
+    init(checkerr: RandomWord) {
+        self.checkerr = checkerr
     }
+    
+    func updateText(_ string: String) {
+        let wordNeedCheck = string
+        checkerr.check(word: wordNeedCheck) { checking in
+            switch checking {
+            case .empty:
+                print("EMPTY")
+            case .correct:
+                print("YES")
+            case .incorrect:
+                print("NONONO")
+            }
+        }
+    }
+        
+    
+   var onTapCheckWord: () -> Void = {
+       // тут должна быть проверка на условия
+      print("Кнопка нажимается")
+    }
+
 }
+

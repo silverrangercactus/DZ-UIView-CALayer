@@ -11,10 +11,14 @@ import SnapKit
 
 final class FeedViewController: UIViewController {
 
-    var checkerr: RandomWord
+    //var checkerr: RandomWord
+    
+    private var viewModel: FeedViewOutput
 
-    init(checkerr: RandomWord) {
-        self.checkerr = checkerr
+    init(//checkerr: RandomWord,
+        viewModel: FeedViewOutput) {
+       // self.checkerr = checkerr
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -25,27 +29,39 @@ final class FeedViewController: UIViewController {
     var someText: String = ""
     
     private lazy var someButton: CustomButton = {
-        let someButton = CustomButton(title: "Touch Me", titleColor: .white) { [self] in
-            let wordNeedCheck = self.someText
-            self.checkerr.check(word: wordNeedCheck) { [weak self] checking in
-                switch checking {
-                case .empty:
-                    self?.someLabel.text = "No Text"
-                    self?.someLabel.textColor = .purple
-                case .correct:
-                    self?.someLabel.text = self?.someText
-                    self?.someLabel.textColor = .green
-                case .incorrect:
-                    self?.someLabel.text = self?.someText
-                    self?.someLabel.textColor = .red
-                }
-            }
+        let someButton = CustomButton(title: "Touch Me", titleColor: .white) {
+            self.checkYourWord()
         }
-            someButton.setBackgroundImage(UIImage(named: "blue_pixel"), for: .normal)
-            someButton.layer.masksToBounds = true
-            someButton.layer.cornerRadius = 10
+        someButton.setBackgroundImage(UIImage(named: "blue_pixel"), for: .normal)
+        someButton.layer.masksToBounds = true
+        someButton.layer.cornerRadius = 10
         return someButton
     }()
+    
+    //не могу засунуть это во FeedViewModel
+    
+//        { [self] in
+//            let wordNeedCheck = self.someText
+//            self.checkerr.check(word: wordNeedCheck) { [weak self] checking in
+//                switch checking {
+//                case .empty:
+//                    self?.someLabel.text = "No Text"
+//                    self?.someLabel.textColor = .purple
+//                case .correct:
+//                    self?.someLabel.text = self?.someText
+//                    self?.someLabel.textColor = .green
+//                case .incorrect:
+//                    self?.someLabel.text = self?.someText
+//                    self?.someLabel.textColor = .red
+//                }
+//            }
+//        }
+    
+    private func checkYourWord() {
+           //  viewModel передать touch event
+       // viewModel.onTapCheckWord()
+        imputData()
+    }
     
     
     var someTextField: CustomTextField = {
@@ -56,6 +72,11 @@ final class FeedViewController: UIViewController {
     
     @objc func saveSomeCustomTextFieldText() {
         someText = someTextField.text ?? ""
+        
+    }
+    
+    private func imputData() {
+        viewModel.updateText(someText)
     }
     
     var someLabel: UILabel = {

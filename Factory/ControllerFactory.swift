@@ -19,7 +19,9 @@ struct ControllerFatoryImpl: ControllerFactory {
     
     func makeFeed() -> FeedViewController {
         let checkerr = RandomWord()
-        let feedController = FeedViewController(checkerr: checkerr)
+        let viewModel = FeedViewModel(checkerr: checkerr)
+        let feedController = FeedViewController(//checkerr: checkerr,
+            viewModel: viewModel)
         return feedController
     }
     
