@@ -37,29 +37,8 @@ final class FeedViewController: UIViewController {
         someButton.layer.cornerRadius = 10
         return someButton
     }()
-    
-    //не могу засунуть это во FeedViewModel
-    
-//        { [self] in
-//            let wordNeedCheck = self.someText
-//            self.checkerr.check(word: wordNeedCheck) { [weak self] checking in
-//                switch checking {
-//                case .empty:
-//                    self?.someLabel.text = "No Text"
-//                    self?.someLabel.textColor = .purple
-//                case .correct:
-//                    self?.someLabel.text = self?.someText
-//                    self?.someLabel.textColor = .green
-//                case .incorrect:
-//                    self?.someLabel.text = self?.someText
-//                    self?.someLabel.textColor = .red
-//                }
-//            }
-//        }
-    
+        
     private func checkYourWord() {
-           //  viewModel передать touch event
-       // viewModel.onTapCheckWord()
         imputData()
     }
     
@@ -76,7 +55,19 @@ final class FeedViewController: UIViewController {
     }
     
     private func imputData() {
-        viewModel.updateText(someText)
+        viewModel.updateText(someText) { checking in
+                switch checking {
+                case .pox:
+                    self.someLabel.text = "No Text"
+                    self.someLabel.textColor = .purple
+                case .good:
+                    self.someLabel.text = self.someText
+                    self.someLabel.textColor = .green
+                case .bad:
+                    self.someLabel.text = self.someText
+                    self.someLabel.textColor = .red
+                }
+            }
     }
     
     var someLabel: UILabel = {

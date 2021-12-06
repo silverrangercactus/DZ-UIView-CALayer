@@ -9,40 +9,33 @@
 import UIKit
 
 protocol FeedViewOutput {
-   
-    func updateText(_ string: String)
-    
-    var onTapCheckWord: () -> Void { get set }
-
+    func updateText(_ string: String, completion: (ResultCheckMy) -> Void)
 }
 
+enum ResultCheckMy {
+    case good, bad, pox
+}
 
 class FeedViewModel: FeedViewOutput {
-    
+
     var checkerr: RandomWord
         
     init(checkerr: RandomWord) {
         self.checkerr = checkerr
     }
     
-    func updateText(_ string: String) {
+    func updateText(_ string: String, completion: (ResultCheckMy) -> Void) {
         let wordNeedCheck = string
         checkerr.check(word: wordNeedCheck) { checking in
             switch checking {
             case .empty:
-                print("EMPTY")
+                completion(.pox)
             case .correct:
-                print("YES")
+                completion(.good)
             case .incorrect:
-                print("NONONO")
+                completion(.bad)
             }
         }
-    }
-        
-    
-   var onTapCheckWord: () -> Void = {
-       // тут должна быть проверка на условия
-      print("Кнопка нажимается")
     }
 
 }
