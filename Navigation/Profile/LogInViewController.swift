@@ -22,6 +22,14 @@ class LogInViewController: UIViewController {
         return logoImage
     }()
     
+    var timer = Timer()
+    
+    var zeroTime = 0
+//    let dateFormatter = DateFormatter()
+//    dateFormatter.dateFormat = "HH:mm"
+//    dateFormatter.timeStyle = .short
+//    dateFormatter.dateStyle = .none
+    
     
     var emailPhoneTextField: UITextField = {
         let emailPhoneTextField = UITextField()
@@ -88,6 +96,13 @@ class LogInViewController: UIViewController {
         logInButton.layer.cornerRadius = 10
         return logInButton
     }()
+    
+    var timerLabel: UILabel = {
+        let timerLabel = UILabel()
+        timerLabel.text = ""
+        timerLabel.font = UIFont.systemFont(ofSize: 16)
+        return timerLabel
+    }()
 
     
     override func viewDidLoad() {
@@ -105,11 +120,13 @@ class LogInViewController: UIViewController {
         scrollView.addSubview(emailPhoneTextField)
         scrollView.addSubview(passwordTextField)
         scrollView.addSubview(logInButton)
+        scrollView.addSubview(timerLabel)
         setupViews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setTimer()
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         
@@ -118,6 +135,8 @@ class LogInViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        cancelTimer()
+        
         
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -142,6 +161,7 @@ class LogInViewController: UIViewController {
         emailPhoneTextField.translatesAutoresizingMaskIntoConstraints = false
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
         logInButton.translatesAutoresizingMaskIntoConstraints = false
+        timerLabel.translatesAutoresizingMaskIntoConstraints = false
         
         scrollView.isScrollEnabled = true
    
@@ -176,11 +196,43 @@ class LogInViewController: UIViewController {
             logInButton.heightAnchor.constraint(equalToConstant: 50),
             logInButton.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
             logInButton.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -16),
-            logInButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
+            logInButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            
+            
+            timerLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 80),
+            timerLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor)
         
         ]
         
         NSLayoutConstraint.activate(constraints)
+    }
+    
+    func setTimer() {
+        
+        self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
+            self.zeroTime += 1
+            let time = self.secondToMinutes(seconds: self.zeroTime)
+            let timeString = self.makeTimeString(minutes: time.0, seconds: time.1)
+            self.timerLabel.text = timeString
+        }
+        timer.fire()
+    }
+    
+    func secondToMinutes(seconds: Int) -> (Int, Int) {
+       return (((seconds % 3600) / 60), ((seconds % 3600) % 60))
+    }
+    
+    func makeTimeString(minutes: Int, seconds: Int) -> String {
+        var timeString = ""
+        timeString += String(format: "%02d", minutes)
+        timeString += ":"
+        timeString += String(format: "%02d", seconds)
+        return timeString
+    }
+    
+    func cancelTimer(){
+    timer.invalidate()
+        self.zeroTime = 0
     }
     
 }
