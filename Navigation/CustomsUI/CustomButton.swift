@@ -23,7 +23,6 @@ class CustomButton: UIButton {
     
     @objc private func buttonTapped() {
         self.buttonTarget()
-        print("hello ololo")
     }
     
     required init?(coder: NSCoder) {

@@ -25,11 +25,6 @@ class LogInViewController: UIViewController {
     var timer = Timer()
     
     var zeroTime = 0
-//    let dateFormatter = DateFormatter()
-//    dateFormatter.dateFormat = "HH:mm"
-//    dateFormatter.timeStyle = .short
-//    dateFormatter.dateStyle = .none
-    
     
     var emailPhoneTextField: UITextField = {
         let emailPhoneTextField = UITextField()
