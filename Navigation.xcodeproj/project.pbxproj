@@ -25,11 +25,11 @@
 		201817D526E2941900B504C6 /* StorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 201817C526E2941800B504C6 /* StorageService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		201817D826E2941900B504C6 /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 201817C326E2941800B504C6 /* StorageService.framework */; };
 		201817D926E2941900B504C6 /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 201817C326E2941800B504C6 /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		202D506A27690D68008F376C /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 202D506927690D68008F376C /* iOSIntPackage */; };
 		204C13142701AE9500986AF9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204C13132701AE9500986AF9 /* User.swift */; };
 		204C13162701B2F400986AF9 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204C13152701B2F400986AF9 /* UserService.swift */; };
 		204C13182701B30F00986AF9 /* CurrentUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204C13172701B30F00986AF9 /* CurrentUserService.swift */; };
 		204C131A2701B32000986AF9 /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204C13192701B32000986AF9 /* TestUserService.swift */; };
-		204D308826E777330040DCC6 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 204D308726E777330040DCC6 /* iOSIntPackage */; };
 		205F90BF26B00690001BE73D /* PhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205F90BE26B00690001BE73D /* PhotoTableViewCell.swift */; };
 		205F90C126B02130001BE73D /* PhotoStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205F90C026B02130001BE73D /* PhotoStructure.swift */; };
 		205F90C326B18B1E001BE73D /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205F90C226B18B1E001BE73D /* PhotosViewController.swift */; };
@@ -141,7 +141,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				204D308826E777330040DCC6 /* iOSIntPackage in Frameworks */,
+				202D506A27690D68008F376C /* iOSIntPackage in Frameworks */,
 				201817D826E2941900B504C6 /* StorageService.framework in Frameworks */,
 				72606E8D9D4ECB1E233EFEB4 /* Pods_Navigation.framework in Frameworks */,
 			);
@@ -356,7 +356,7 @@
 			);
 			name = Navigation;
 			packageProductDependencies = (
-				204D308726E777330040DCC6 /* iOSIntPackage */,
+				202D506927690D68008F376C /* iOSIntPackage */,
 			);
 			productName = Navigation;
 			productReference = 060782AE250CE27700A87020 /* Navigation.app */;
@@ -434,7 +434,7 @@
 			);
 			mainGroup = 060782A5250CE27700A87020;
 			packageReferences = (
-				204D308626E777330040DCC6 /* XCRemoteSwiftPackageReference "iOSIntPackage" */,
+				202D506827690D68008F376C /* XCRemoteSwiftPackageReference "iOSIntPackage" */,
 			);
 			productRefGroup = 060782AF250CE27700A87020 /* Products */;
 			projectDirPath = "";
@@ -972,20 +972,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		204D308626E777330040DCC6 /* XCRemoteSwiftPackageReference "iOSIntPackage" */ = {
+		202D506827690D68008F376C /* XCRemoteSwiftPackageReference "iOSIntPackage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/TrueMax/iOSIntPackage";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.2.3;
+				branch = imagepublisher;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		204D308726E777330040DCC6 /* iOSIntPackage */ = {
+		202D506927690D68008F376C /* iOSIntPackage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 204D308626E777330040DCC6 /* XCRemoteSwiftPackageReference "iOSIntPackage" */;
+			package = 202D506827690D68008F376C /* XCRemoteSwiftPackageReference "iOSIntPackage" */;
 			productName = iOSIntPackage;
 		};
 /* End XCSwiftPackageProductDependency section */
