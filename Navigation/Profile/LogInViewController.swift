@@ -31,6 +31,8 @@ class LogInViewController: UIViewController {
         return activiIndicator
     }()
 
+    let urlurl = NetworkService()
+    
     var crackButton: UIButton = {
         let crackButton = UIButton()
         crackButton.setTitle("☠️", for: .normal)
@@ -124,6 +126,7 @@ class LogInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.navigationController?.isNavigationBarHidden = true
         view.backgroundColor = .white
     }
