@@ -42,6 +42,7 @@
 		208750F7269D5EE300F338F2 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208750F6269D5EE300F338F2 /* LogInViewController.swift */; };
 		208750F8269D626200F338F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 060782B7250CE27700A87020 /* Main.storyboard */; };
 		20983CF727293A270013D681 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20983CF627293A270013D681 /* CustomButton.swift */; };
+		2099F16A276082C300E4E6DB /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2099F169276082C300E4E6DB /* Timer.swift */; };
 		20B9892C26898AE5008ADC71 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B9892B26898AE5008ADC71 /* ProfileViewController.swift */; };
 		69460E946581F44920A3EE74 /* Pods_StorageService_StorageServiceTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B829F6DD7C7DBA30E8121B4F /* Pods_StorageService_StorageServiceTests.framework */; };
 		72606E8D9D4ECB1E233EFEB4 /* Pods_Navigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE963270426ED57DBEE205E0 /* Pods_Navigation.framework */; };
@@ -127,6 +128,7 @@
 		206B5E672705C8F800992C93 /* LoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFactory.swift; sourceTree = "<group>"; };
 		208750F6269D5EE300F338F2 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		20983CF627293A270013D681 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		2099F169276082C300E4E6DB /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		20B9892B26898AE5008ADC71 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		22E88BF656DCAED05D80B882 /* Pods-Navigation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Navigation.release.xcconfig"; path = "Target Support Files/Pods-Navigation/Pods-Navigation.release.xcconfig"; sourceTree = "<group>"; };
 		281F1BC0253D808C0ACCD109 /* Pods-StorageService-StorageServiceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StorageService-StorageServiceTests.debug.xcconfig"; path = "Target Support Files/Pods-StorageService-StorageServiceTests/Pods-StorageService-StorageServiceTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 				060782C7250CEE5D00A87020 /* PostViewController.swift */,
 				060782C9250CEE7200A87020 /* Post.swift */,
 				200E5FBD272ACECF0049CB6C /* TabBarController.swift */,
+				2099F169276082C300E4E6DB /* Timer.swift */,
 				200E5FB8272A85D50049CB6C /* Model */,
 				20983CF5272939FB0013D681 /* CustomsUI */,
 				206B5E642705960400992C93 /* Login */,
@@ -600,6 +603,7 @@
 				204C13142701AE9500986AF9 /* User.swift in Sources */,
 				201487B026A80576001523AD /* ProfileTableHederView.swift in Sources */,
 				206B5E682705C8F800992C93 /* LoginFactory.swift in Sources */,
+				2099F16A276082C300E4E6DB /* Timer.swift in Sources */,
 				205F90BF26B00690001BE73D /* PhotoTableViewCell.swift in Sources */,
 				206B5E662705A7FF00992C93 /* LogInViewControllerDelegate.swift in Sources */,
 				20983CF727293A270013D681 /* CustomButton.swift in Sources */,

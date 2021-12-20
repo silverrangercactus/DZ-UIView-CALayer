@@ -12,6 +12,8 @@ import iOSIntPackage
 class PhotosViewController: UIViewController {
     
     private let publisher = ImagePublisherFacade()
+    var imageProcessorArray = [UIImage]()
+    
     
     private lazy var photoCollection: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -30,6 +32,7 @@ class PhotosViewController: UIViewController {
         view.backgroundColor = .white
         
         configurePublisher()
+        imageProcessorFunc()
         setupTableView()
         setupConstraints()
     }
@@ -71,9 +74,34 @@ class PhotosViewController: UIViewController {
         
         publisher.addImagesWithTimer(
             time: 1,
-            repeat: 20,
-            userImages: PhotoViewPublisher.allPhoto.compactMap( {$0} ))
+            repeat: 10,
+            userImages: PhotoViewPublisher.allPhoto.compactMap({$0}))
     }
+    
+    func imageProcessorFunc() {
+        
+        let timer = BenchTimer()
+
+        let imageProcessor = ImageProcessor()
+
+        imageProcessor.processImagesOnThread(sourceImages: PhotoViewPublisher.allPhoto.compactMap({$0}), filter: .colorInvert, qos: .userInteractive) { photoImageProcess in
+            for image in photoImageProcess {
+                if let cartoon = image {
+                   // print("OLOLO111")
+                    self.imageProcessorArray.append(UIImage(cgImage: cartoon))
+                }
+            }
+            print("\(timer.stop()) seconds")
+        }
+    }
+        
+        // colorInvert - userInteractive = 6.191434025764465 seconds
+        // colorInvert - default = 6.199650049209595 seconds
+        // colorInvert - background = 28.726044058799744 seconds
+        // posterize - userInitiated = 7.366518020629883 seconds
+        // posterize - background = 32.88329899311066 seconds
+
+
     
     func cancelSubscription() {
         publisher.rechargeImageLibrary()
@@ -86,12 +114,14 @@ class PhotosViewController: UIViewController {
 extension PhotosViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return PhotoViewPublisher.allPhoto.count
+        //return PhotoViewPublisher.allPhoto.count
+        return imageProcessorArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = photoCollection.dequeueReusableCell(withReuseIdentifier: String(describing: PhotosCollectionViewCell.self), for: indexPath) as! PhotosCollectionViewCell
-        cell.photo = PhotoViewPublisher.allPhoto[indexPath.row]
+//        cell.photo = PhotoViewPublisher.allPhoto[indexPath.row]
+        cell.photo = imageProcessorArray[indexPath.row]
         return cell
     }
     
