@@ -22,6 +22,38 @@ class LogInViewController: UIViewController {
         return logoImage
     }()
     
+    var bruteForce = BruteForce()
+    
+    var activiIndicator: UIActivityIndicatorView = {
+        let activiIndicator = UIActivityIndicatorView()
+       // activiIndicator.isHidden = true
+        activiIndicator.color = .red
+        return activiIndicator
+    }()
+
+    var crackButton: UIButton = {
+        let crackButton = UIButton()
+        crackButton.setTitle("☠️", for: .normal)
+        crackButton.titleLabel?.font = UIFont.systemFont(ofSize: 30)
+        crackButton.addTarget(self, action: #selector(crackFunck), for: .touchUpInside)
+        return crackButton
+    }()
+    
+    @objc func crackFunck() {
+        activiIndicator.isHidden = false
+        activiIndicator.startAnimating()
+        let quequ = DispatchQueue(label: "MyDispatchQueue", qos: .background)
+        
+        quequ.async {
+            self.bruteForce.bruteForce(passwordToUnlock: "222") 
+            DispatchQueue.main.async {
+                self.activiIndicator.isHidden = true
+                self.activiIndicator.stopAnimating()
+                self.passwordTextField.text = self.bruteForce.correctCrack
+                self.passwordTextField.isSecureTextEntry = false
+            }
+        }
+    }
     
     var emailPhoneTextField: UITextField = {
         let emailPhoneTextField = UITextField()
@@ -105,6 +137,8 @@ class LogInViewController: UIViewController {
         scrollView.addSubview(emailPhoneTextField)
         scrollView.addSubview(passwordTextField)
         scrollView.addSubview(logInButton)
+        scrollView.addSubview(crackButton)
+        scrollView.addSubview(activiIndicator)
         setupViews()
     }
     
@@ -142,6 +176,8 @@ class LogInViewController: UIViewController {
         emailPhoneTextField.translatesAutoresizingMaskIntoConstraints = false
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
         logInButton.translatesAutoresizingMaskIntoConstraints = false
+        crackButton.translatesAutoresizingMaskIntoConstraints = false
+        activiIndicator.translatesAutoresizingMaskIntoConstraints = false
         
         scrollView.isScrollEnabled = true
    
@@ -176,7 +212,17 @@ class LogInViewController: UIViewController {
             logInButton.heightAnchor.constraint(equalToConstant: 50),
             logInButton.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
             logInButton.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -16),
-            logInButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
+            logInButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            
+            crackButton.bottomAnchor.constraint(equalTo: logInButton.bottomAnchor, constant: 150),
+            crackButton.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            crackButton.widthAnchor.constraint(equalToConstant: 50),
+            crackButton.heightAnchor.constraint(equalTo: crackButton.widthAnchor),
+            
+            activiIndicator.bottomAnchor.constraint(equalTo: logInButton.bottomAnchor, constant: 90),
+            activiIndicator.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            activiIndicator.widthAnchor.constraint(equalToConstant: 20),
+            activiIndicator.heightAnchor.constraint(equalTo: crackButton.widthAnchor)
         
         ]
         

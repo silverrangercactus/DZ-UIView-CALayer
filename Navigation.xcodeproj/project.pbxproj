@@ -34,6 +34,7 @@
 		205F90C126B02130001BE73D /* PhotoStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205F90C026B02130001BE73D /* PhotoStructure.swift */; };
 		205F90C326B18B1E001BE73D /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205F90C226B18B1E001BE73D /* PhotosViewController.swift */; };
 		205F90C526B199D3001BE73D /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205F90C426B199D3001BE73D /* PhotosCollectionViewCell.swift */; };
+		2064E30427647CF300B3DAC9 /* bruteForce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2064E30327647CF300B3DAC9 /* bruteForce.swift */; };
 		206B5E6127057E1A00992C93 /* Checker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206B5E6027057E1A00992C93 /* Checker.swift */; };
 		206B5E632705817E00992C93 /* LoginInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206B5E622705817E00992C93 /* LoginInspector.swift */; };
 		206B5E662705A7FF00992C93 /* LogInViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206B5E652705A7FF00992C93 /* LogInViewControllerDelegate.swift */; };
@@ -122,6 +123,7 @@
 		205F90C026B02130001BE73D /* PhotoStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoStructure.swift; sourceTree = "<group>"; };
 		205F90C226B18B1E001BE73D /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		205F90C426B199D3001BE73D /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
+		2064E30327647CF300B3DAC9 /* bruteForce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bruteForce.swift; sourceTree = "<group>"; };
 		206B5E6027057E1A00992C93 /* Checker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checker.swift; sourceTree = "<group>"; };
 		206B5E622705817E00992C93 /* LoginInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInspector.swift; sourceTree = "<group>"; };
 		206B5E652705A7FF00992C93 /* LogInViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewControllerDelegate.swift; sourceTree = "<group>"; };
@@ -205,7 +207,12 @@
 				060782C7250CEE5D00A87020 /* PostViewController.swift */,
 				060782C9250CEE7200A87020 /* Post.swift */,
 				200E5FBD272ACECF0049CB6C /* TabBarController.swift */,
+ feature/prom_develop_dz_9
+				2064E30327647CF300B3DAC9 /* bruteForce.swift */,
+
+
 				2099F169276082C300E4E6DB /* Timer.swift */,
+ develop
 				200E5FB8272A85D50049CB6C /* Model */,
 				20983CF5272939FB0013D681 /* CustomsUI */,
 				206B5E642705960400992C93 /* Login */,
@@ -591,6 +598,7 @@
 				206B5E6127057E1A00992C93 /* Checker.swift in Sources */,
 				060782B6250CE27700A87020 /* FeedViewController.swift in Sources */,
 				060782B2250CE27700A87020 /* AppDelegate.swift in Sources */,
+				2064E30427647CF300B3DAC9 /* bruteForce.swift in Sources */,
 				208750F7269D5EE300F338F2 /* LogInViewController.swift in Sources */,
 				060782C6250CEB0A00A87020 /* InfoViewController.swift in Sources */,
 				060782CA250CEE7200A87020 /* Post.swift in Sources */,
