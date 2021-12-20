@@ -207,12 +207,8 @@
 				060782C7250CEE5D00A87020 /* PostViewController.swift */,
 				060782C9250CEE7200A87020 /* Post.swift */,
 				200E5FBD272ACECF0049CB6C /* TabBarController.swift */,
- feature/prom_develop_dz_9
 				2064E30327647CF300B3DAC9 /* bruteForce.swift */,
-
-
 				2099F169276082C300E4E6DB /* Timer.swift */,
- develop
 				200E5FB8272A85D50049CB6C /* Model */,
 				20983CF5272939FB0013D681 /* CustomsUI */,
 				206B5E642705960400992C93 /* Login */,
