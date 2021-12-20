@@ -18,7 +18,7 @@ class BenchTimer {
     
     func stop() -> CFAbsoluteTime {
         endTime = CFAbsoluteTimeGetCurrent()
-        return duration!
+        return duration ?? 0.0
     }
     
     var duration: CFAbsoluteTime? {

@@ -87,7 +87,7 @@ class PhotosViewController: UIViewController {
         imageProcessor.processImagesOnThread(sourceImages: PhotoViewPublisher.allPhoto.compactMap({$0}), filter: .colorInvert, qos: .userInteractive) { photoImageProcess in
             for image in photoImageProcess {
                 if let cartoon = image {
-                    print("OLOLO")
+                   // print("OLOLO111")
                     self.imageProcessorArray.append(UIImage(cgImage: cartoon))
                 }
             }
