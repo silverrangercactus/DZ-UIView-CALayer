@@ -17,9 +17,6 @@ enum AppConfiguration: String, CaseIterable{
 
 struct NetworkService {
     
-    public typealias ObjectEndpointCompletion<Object: Decodable> = (Result<Object, Error>, HTTPURLResponse?) -> ()
-    
-    
     func startURLSessionDataTask(caseMy: AppConfiguration) {
 
         let myUrl = caseMy
@@ -32,8 +29,9 @@ struct NetworkService {
             }
                                
             guard let data = data else { return }
+            let stringData = String(decoding: data, as: UTF8.self)
             print("DATA")
-            print(data)
+            print(stringData)
             
             if let error = error {
                 print(error.localizedDescription)
