@@ -17,6 +17,8 @@ enum AppConfiguration: String, CaseIterable{
 
 struct NetworkService {
     
+    static let shared = NetworkService()
+        
     func startURLSessionDataTask(caseMy: AppConfiguration) {
 
         let myUrl = caseMy
@@ -45,4 +47,49 @@ struct NetworkService {
         }.resume()
     }
     
+    func startURLSessionDataTaskWithcJSON(competion: @escaping (Human) -> Void) {
+        guard let url = URL(string: "https://jsonplaceholder.typicode.com/todos/13") else { return }
+        
+        let urlSession = URLSession.shared
+        urlSession.dataTask(with: url) { data, response, error in
+            
+            guard let data = data else { return }
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+
+                    guard let userId = json["userId"] as? Int else { return }
+                    guard let id = json["id"] as? Int else { return }
+                    guard let title = json["title"] as? String else { return }
+                    guard let completed = json["completed"] as? Bool else { return }
+                    
+                    let human = Human(userId: userId, id: id, title: title, completed: completed)
+                    competion(human)
+                }
+            
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+        }.resume()
+    }
+    
+    func startURLSessionDataTaskWithcCodable(completion: @escaping (Planet) -> Void) {
+        guard let url = URL(string: "https://swapi.dev/api/planets/1") else { return }
+        let decoder = JSONDecoder()
+       
+        let urlSession = URLSession.shared
+        urlSession.dataTask(with: url) { data, response, error in
+            
+            guard let data = data else { return }
+            if let post = try? decoder.decode(Planet.self, from: data) {
+
+                completion(post)
+            } 
+            
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            
+        }.resume()
+    }
 }
+

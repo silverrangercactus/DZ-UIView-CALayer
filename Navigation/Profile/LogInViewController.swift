@@ -30,8 +30,6 @@ class LogInViewController: UIViewController {
         activiIndicator.color = .red
         return activiIndicator
     }()
-
-    let urlurl = NetworkService()
     
     var crackButton: UIButton = {
         let crackButton = UIButton()

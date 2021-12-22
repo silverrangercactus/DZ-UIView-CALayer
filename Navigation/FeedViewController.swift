@@ -22,6 +22,21 @@ final class FeedViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    var orbitalLabel: UILabel = {
+        let orbitalLabel = UILabel()
+        orbitalLabel.textColor = .red
+        orbitalLabel.font = UIFont.systemFont(ofSize: 17)
+        orbitalLabel.text = "Orbital period = "
+        return orbitalLabel
+    }()
+    
+    var titleLabel: UILabel = {
+        let titleLabel = UILabel()
+        titleLabel.textColor = .blue
+        titleLabel.font = UIFont.systemFont(ofSize: 17)
+        return titleLabel
+    }()
+    
     var someText: String = ""
     
     private lazy var someButton: CustomButton = {
@@ -70,6 +85,19 @@ final class FeedViewController: UIViewController {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
         view.backgroundColor = .white
+        
+        NetworkService.shared.startURLSessionDataTaskWithcJSON { human in
+            DispatchQueue.main.async {
+                self.titleLabel.text = human.title
+            }
+        }
+        
+        NetworkService.shared.startURLSessionDataTaskWithcCodable { planet in
+            DispatchQueue.main.async {
+                self.orbitalLabel.text! += planet.orbitalPeriod + " days"
+            }
+        }
+       
     }
     
     
@@ -77,6 +105,8 @@ final class FeedViewController: UIViewController {
         view.addSubview(someButton)
         view.addSubview(someTextField)
         view.addSubview(someLabel)
+        view.addSubview(orbitalLabel)
+        view.addSubview(titleLabel)
         
         settingUI()
     }
@@ -100,5 +130,20 @@ final class FeedViewController: UIViewController {
             make.left.right.equalToSuperview().inset(16)
             make.top.equalTo(someTextField.snp.bottom).offset(50)
         }
+        
+        orbitalLabel.snp.makeConstraints { make in
+            make.centerX.equalTo(view.snp.centerX)
+            make.height.equalTo(50)
+            make.top.equalToSuperview().inset(150)
+        }
+        
+        titleLabel.snp.makeConstraints { make in
+            make.centerX.equalTo(view.snp.centerX)
+            make.height.equalTo(50)
+            make.top.equalToSuperview().inset(100)
+        }
     }
+
+
+    
 }
