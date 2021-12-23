@@ -54,4 +54,8 @@ struct Planet: Decodable {
     }
 }
 
-
+struct Names: Decodable {
+    
+    var name: String
+    
+}

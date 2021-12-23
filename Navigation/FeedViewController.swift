@@ -21,6 +21,12 @@ final class FeedViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    var namesTableView = UITableView(frame: .zero, style: .plain)
+    var cellID = "cellID"
+    
+    var arrayNames: [String] = []
+    let ololo = ["odin", "dva", "trhree"]
 
     var orbitalLabel: UILabel = {
         let orbitalLabel = UILabel()
@@ -97,9 +103,16 @@ final class FeedViewController: UIViewController {
                 self.orbitalLabel.text! += planet.orbitalPeriod + " days"
             }
         }
-       
+        
+        NetworkService.shared.getNamesOfPeopleDecodable { array in
+            DispatchQueue.main.async {
+                self.arrayNames = array
+                self.namesTableView.reloadData()
+            }
+            
+        }
+     
     }
-    
     
     override func viewWillLayoutSubviews() {
         view.addSubview(someButton)
@@ -108,6 +121,7 @@ final class FeedViewController: UIViewController {
         view.addSubview(orbitalLabel)
         view.addSubview(titleLabel)
         
+        setupTableView()
         settingUI()
     }
     
@@ -142,8 +156,30 @@ final class FeedViewController: UIViewController {
             make.height.equalTo(50)
             make.top.equalToSuperview().inset(100)
         }
+        
+        namesTableView.snp.makeConstraints { make in
+            make.left.right.equalToSuperview().inset(16)
+            make.height.equalTo(200)
+            make.top.equalToSuperview().inset(200)
+        }
     }
-
-
     
+    func setupTableView() {
+        view.addSubview(namesTableView)
+        namesTableView.dataSource = self
+    }
 }
+
+extension FeedViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        arrayNames.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: cellID)
+        let post = arrayNames[indexPath.row]
+        cell.textLabel?.text = post
+        return cell
+    }
+}
+

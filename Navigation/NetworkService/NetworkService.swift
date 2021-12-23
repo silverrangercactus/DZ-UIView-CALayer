@@ -91,5 +91,36 @@ struct NetworkService {
             
         }.resume()
     }
-}
+    
+    func getNamesOfPeopleDecodable(comlete: @escaping ([String]) -> Void) {
+        
+        NetworkService.shared.startURLSessionDataTaskWithcCodable { planet in
+            var arrayName: [String] = []
+    
+                for i in planet.residents {
+                    ololo(urlMy: i) { string in
+                    arrayName.append(string)
+                        comlete(arrayName)
+                    }
+                }
+            
+                func ololo(urlMy: String, completion: @escaping (String) -> Void) {
+                    let decoder = JSONDecoder()
+                    let urlSession = URLSession.shared
+                guard let urlMy = URL(string: urlMy) else { return }
+                urlSession.dataTask(with: urlMy) { data, response, error in
+                
+                guard let data = data else { return }
+                if let post = try? decoder.decode(Names.self, from: data) {
+                    completion(post.name)
+                }
+            
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+            }.resume()
+                }
+            }
+        }
+    }
 
