@@ -240,7 +240,7 @@ class LogInViewController: UIViewController {
             activiIndicator.bottomAnchor.constraint(equalTo: logInButton.bottomAnchor, constant: 90),
             activiIndicator.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             activiIndicator.widthAnchor.constraint(equalToConstant: 20),
-            activiIndicator.heightAnchor.constraint(equalTo: crackButton.widthAnchor)
+            activiIndicator.heightAnchor.constraint(equalTo: crackButton.widthAnchor),
             
             timerLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 80),
             timerLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor)

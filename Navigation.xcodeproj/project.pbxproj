@@ -42,13 +42,14 @@
 		206B5E682705C8F800992C93 /* LoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206B5E672705C8F800992C93 /* LoginFactory.swift */; };
 		2072311326E29CCB006796CE /* PostStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200CD10F26A6D2B50099917F /* PostStructure.swift */; };
 		208750F7269D5EE300F338F2 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208750F6269D5EE300F338F2 /* LogInViewController.swift */; };
-		208750F8269D626200F338F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 060782B7250CE27700A87020 /* Main.storyboard */; };
-		208E52472755F11F00981598 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208E52462755F11F00981598 /* AppCoordinator.swift */; };
 		208E524927561D8C00981598 /* FeedFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208E524827561D8C00981598 /* FeedFlowCoordinator.swift */; };
 		20983CF727293A270013D681 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20983CF627293A270013D681 /* CustomButton.swift */; };
 		2099F16A276082C300E4E6DB /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2099F169276082C300E4E6DB /* Timer.swift */; };
 		20B9892C26898AE5008ADC71 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B9892B26898AE5008ADC71 /* ProfileViewController.swift */; };
 		20C2DA2C27708EA60009176A /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C2DA2B27708EA60009176A /* NetworkService.swift */; };
+		20DFB3A52775F744000C27FA /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 202D506927690D68008F376C /* iOSIntPackage */; };
+		20DFB3A72775F7C5000C27FA /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DFB3A62775F7C5000C27FA /* Coordinator.swift */; };
+		20DFB3A82775F810000C27FA /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208E52462755F11F00981598 /* AppCoordinator.swift */; };
 		69460E946581F44920A3EE74 /* Pods_StorageService_StorageServiceTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B829F6DD7C7DBA30E8121B4F /* Pods_StorageService_StorageServiceTests.framework */; };
 		72606E8D9D4ECB1E233EFEB4 /* Pods_Navigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE963270426ED57DBEE205E0 /* Pods_Navigation.framework */; };
 		E90F7AF846BCD12FA1C850DD /* Pods_StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0077EAFF2D5FE874283440BA /* Pods_StorageService.framework */; };
@@ -99,7 +100,6 @@
 		060782B1250CE27700A87020 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		060782B3250CE27700A87020 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		060782B5250CE27700A87020 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
-		060782B8250CE27700A87020 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		060782BA250CE27A00A87020 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		060782BD250CE27A00A87020 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		060782BF250CE27A00A87020 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -141,6 +141,7 @@
 		2099F169276082C300E4E6DB /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		20B9892B26898AE5008ADC71 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		20C2DA2B27708EA60009176A /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		20DFB3A62775F7C5000C27FA /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		22E88BF656DCAED05D80B882 /* Pods-Navigation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Navigation.release.xcconfig"; path = "Target Support Files/Pods-Navigation/Pods-Navigation.release.xcconfig"; sourceTree = "<group>"; };
 		281F1BC0253D808C0ACCD109 /* Pods-StorageService-StorageServiceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StorageService-StorageServiceTests.debug.xcconfig"; path = "Target Support Files/Pods-StorageService-StorageServiceTests/Pods-StorageService-StorageServiceTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4F3BD86018CB93A3E820E5DB /* Pods-StorageService-StorageServiceTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StorageService-StorageServiceTests.release.xcconfig"; path = "Target Support Files/Pods-StorageService-StorageServiceTests/Pods-StorageService-StorageServiceTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -154,7 +155,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				202D506A27690D68008F376C /* iOSIntPackage in Frameworks */,
+				20DFB3A52775F744000C27FA /* iOSIntPackage in Frameworks */,
 				201817D826E2941900B504C6 /* StorageService.framework in Frameworks */,
 				72606E8D9D4ECB1E233EFEB4 /* Pods_Navigation.framework in Frameworks */,
 			);
@@ -210,7 +211,6 @@
 			children = (
 				060782B1250CE27700A87020 /* AppDelegate.swift */,
 				060782B3250CE27700A87020 /* SceneDelegate.swift */,
-				060782B7250CE27700A87020 /* Main.storyboard */,
 				060782BA250CE27A00A87020 /* Assets.xcassets */,
 				060782BC250CE27A00A87020 /* LaunchScreen.storyboard */,
 				060782BF250CE27A00A87020 /* Info.plist */,
@@ -322,8 +322,8 @@
 		208E52452755F0E700981598 /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
-				20A119262757DE1E0030B438 /* Coordinator.swift */,
 				208E52462755F11F00981598 /* AppCoordinator.swift */,
+				20DFB3A62775F7C5000C27FA /* Coordinator.swift */,
 				208E524827561D8C00981598 /* FeedFlowCoordinator.swift */,
 			);
 			path = Coordinators;
@@ -513,7 +513,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				208750F8269D626200F338F2 /* Main.storyboard in Resources */,
 				060782BE250CE27A00A87020 /* LaunchScreen.storyboard in Resources */,
 				060782BB250CE27A00A87020 /* Assets.xcassets in Resources */,
 			);
@@ -643,6 +642,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20DFB3A82775F810000C27FA /* AppCoordinator.swift in Sources */,
 				200E5FBA272A86220049CB6C /* RandomWord.swift in Sources */,
 				200E5FBE272ACECF0049CB6C /* TabBarController.swift in Sources */,
 				204C13182701B30F00986AF9 /* CurrentUserService.swift in Sources */,
@@ -658,9 +658,9 @@
 				200E5FBC272A91B90049CB6C /* CustomTextField.swift in Sources */,
 				060782B4250CE27700A87020 /* SceneDelegate.swift in Sources */,
 				20B9892C26898AE5008ADC71 /* ProfileViewController.swift in Sources */,
-				20A119272757DE1E0030B438 /* Coordinator.swift in Sources */,
 				204C131A2701B32000986AF9 /* TestUserService.swift in Sources */,
 				205F90C126B02130001BE73D /* PhotoStructure.swift in Sources */,
+				20DFB3A72775F7C5000C27FA /* Coordinator.swift in Sources */,
 				204C13142701AE9500986AF9 /* User.swift in Sources */,
 				201BF6BA2757CC92007C27A2 /* ControllerFactory.swift in Sources */,
 				201487B026A80576001523AD /* ProfileTableHederView.swift in Sources */,
@@ -716,14 +716,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		060782B7250CE27700A87020 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				060782B8250CE27700A87020 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		060782BC250CE27A00A87020 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
