@@ -26,7 +26,6 @@ class LogInViewController: UIViewController {
     
     var activiIndicator: UIActivityIndicatorView = {
         let activiIndicator = UIActivityIndicatorView()
-       // activiIndicator.isHidden = true
         activiIndicator.color = .red
         return activiIndicator
     }()

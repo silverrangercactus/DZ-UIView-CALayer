@@ -57,10 +57,10 @@ struct NetworkService {
             do {
                 if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
 
-                    guard let userId = json["userId"] as? Int else { return }
-                    guard let id = json["id"] as? Int else { return }
-                    guard let title = json["title"] as? String else { return }
-                    guard let completed = json["completed"] as? Bool else { return }
+                    guard let userId = json["userId"] as? Int,
+                    let id = json["id"] as? Int,
+                    let title = json["title"] as? String,
+                    let completed = json["completed"] as? Bool else { return }
                     
                     let human = Human(userId: userId, id: id, title: title, completed: completed)
                     competion(human)
@@ -98,13 +98,13 @@ struct NetworkService {
             var arrayName: [String] = []
     
                 for i in planet.residents {
-                    ololo(urlMy: i) { string in
+                    getName(urlMy: i) { string in
                     arrayName.append(string)
                         comlete(arrayName)
                     }
                 }
             
-                func ololo(urlMy: String, completion: @escaping (String) -> Void) {
+                func getName(urlMy: String, completion: @escaping (String) -> Void) {
                     let decoder = JSONDecoder()
                     let urlSession = URLSession.shared
                 guard let urlMy = URL(string: urlMy) else { return }
