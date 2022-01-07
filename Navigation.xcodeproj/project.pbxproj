@@ -50,6 +50,7 @@
 		20DFB3A52775F744000C27FA /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 202D506927690D68008F376C /* iOSIntPackage */; };
 		20DFB3A72775F7C5000C27FA /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DFB3A62775F7C5000C27FA /* Coordinator.swift */; };
 		20DFB3A82775F810000C27FA /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208E52462755F11F00981598 /* AppCoordinator.swift */; };
+		20FB30A42771DD0E00EC69D1 /* NetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FB30A32771DD0E00EC69D1 /* NetworkModel.swift */; };
 		69460E946581F44920A3EE74 /* Pods_StorageService_StorageServiceTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B829F6DD7C7DBA30E8121B4F /* Pods_StorageService_StorageServiceTests.framework */; };
 		72606E8D9D4ECB1E233EFEB4 /* Pods_Navigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE963270426ED57DBEE205E0 /* Pods_Navigation.framework */; };
 		E90F7AF846BCD12FA1C850DD /* Pods_StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0077EAFF2D5FE874283440BA /* Pods_StorageService.framework */; };
@@ -142,6 +143,7 @@
 		20B9892B26898AE5008ADC71 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		20C2DA2B27708EA60009176A /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		20DFB3A62775F7C5000C27FA /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		20FB30A32771DD0E00EC69D1 /* NetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkModel.swift; sourceTree = "<group>"; };
 		22E88BF656DCAED05D80B882 /* Pods-Navigation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Navigation.release.xcconfig"; path = "Target Support Files/Pods-Navigation/Pods-Navigation.release.xcconfig"; sourceTree = "<group>"; };
 		281F1BC0253D808C0ACCD109 /* Pods-StorageService-StorageServiceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StorageService-StorageServiceTests.debug.xcconfig"; path = "Target Support Files/Pods-StorageService-StorageServiceTests/Pods-StorageService-StorageServiceTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4F3BD86018CB93A3E820E5DB /* Pods-StorageService-StorageServiceTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StorageService-StorageServiceTests.release.xcconfig"; path = "Target Support Files/Pods-StorageService-StorageServiceTests/Pods-StorageService-StorageServiceTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				200E5FB9272A86220049CB6C /* RandomWord.swift */,
+				20FB30A32771DD0E00EC69D1 /* NetworkModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -664,6 +667,7 @@
 				204C13142701AE9500986AF9 /* User.swift in Sources */,
 				201BF6BA2757CC92007C27A2 /* ControllerFactory.swift in Sources */,
 				201487B026A80576001523AD /* ProfileTableHederView.swift in Sources */,
+				20FB30A42771DD0E00EC69D1 /* NetworkModel.swift in Sources */,
 				206B5E682705C8F800992C93 /* LoginFactory.swift in Sources */,
 				2099F16A276082C300E4E6DB /* Timer.swift in Sources */,
 				205F90BF26B00690001BE73D /* PhotoTableViewCell.swift in Sources */,
