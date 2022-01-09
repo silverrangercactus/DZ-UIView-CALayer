@@ -207,9 +207,6 @@
 			isa = PBXGroup;
 			children = (
 				20F89D0A277AC75200A27548 /* GoogleService-Info.plist */,
-				201BF6B82757CC6A007C27A2 /* Factory */,
-				201BF6BB2757D317007C27A2 /* FeedModule */,
-				208E52452755F0E700981598 /* Coordinators */,
 				060782B1250CE27700A87020 /* AppDelegate.swift */,
 				060782B3250CE27700A87020 /* SceneDelegate.swift */,
 				060782BA250CE27A00A87020 /* Assets.xcassets */,
@@ -220,6 +217,9 @@
 				200E5FBD272ACECF0049CB6C /* TabBarController.swift */,
 				2064E30327647CF300B3DAC9 /* bruteForce.swift */,
 				2099F169276082C300E4E6DB /* Timer.swift */,
+				201BF6BB2757D317007C27A2 /* FeedModule */,
+				208E52452755F0E700981598 /* Coordinators */,
+				201BF6B82757CC6A007C27A2 /* Factory */,
 				20C2DA2A27708E550009176A /* NetworkService */,
 				200E5FB8272A85D50049CB6C /* Model */,
 				20983CF5272939FB0013D681 /* CustomsUI */,

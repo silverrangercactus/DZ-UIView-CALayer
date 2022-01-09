@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class LogInViewController: UIViewController {
     
@@ -130,6 +131,97 @@ class LogInViewController: UIViewController {
         return timerLabel
     }()
 
+    var newButton: UIButton = {
+        let newButton = UIButton()
+        newButton.backgroundColor = .purple
+        newButton.setTitle("Let's Go", for: .normal)
+        newButton.setTitleColor(.white, for: .normal)
+        newButton.layer.masksToBounds = true
+        newButton.layer.cornerRadius = 10
+        newButton.addTarget(self, action: #selector(newButtonTapped), for: .touchUpInside)
+        return newButton
+    }()
+    
+    @objc func newButtonTapped() {
+        
+        guard let email = emailPhoneTextField.text, !email.isEmpty,
+              let password = passwordTextField.text, !password.isEmpty else {
+                  let alert = UIAlertController(title: "No data",
+                                                message: "enter data",
+                                                preferredStyle: .alert)
+                  
+                  alert.addAction(UIAlertAction(title: "Continue",
+                                                style: .cancel))
+                  
+                  present(alert, animated: true)
+                  return
+              }
+        
+        FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password, completion: { [weak self] result, error in
+            guard let strongSelf = self else {
+                return
+            }
+            guard error == nil else {
+                strongSelf.showCreateAccount(email: email, password: password )
+                return
+            }
+            
+            print("you have signed in")
+            
+            #if DEBUG
+            let userService = TestUserService()
+            #else
+            let userService = CurrentUserService()
+            #endif
+
+            let username = self?.emailPhoneTextField.text
+            let profileVC = ProfileViewController(userServiceProperty: userService, userName: username ?? "")
+            self?.navigationController?.pushViewController(profileVC, animated: true)
+        })
+        
+    }
+    
+    func showCreateAccount(email: String, password: String) {
+        let alert = UIAlertController(title: "Account not found",
+                                      message:  "Create account?",
+                                      preferredStyle: .alert )
+        
+        alert.addAction(UIAlertAction(title: "Continue",
+                                      style: .default,
+                                      handler: { _ in
+                FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password, completion: { [weak self] result, error in
+                    
+                    guard error == nil else {
+                        print("Account creation false")
+                        return
+                    }
+                    
+                    print("Account created, you have signed in")
+                    
+                    #if DEBUG
+                    let userService = TestUserService()
+                    #else
+                    let userService = CurrentUserService()
+                    #endif
+
+                    let username = self?.emailPhoneTextField.text
+                    let profileVC = ProfileViewController(userServiceProperty: userService, userName: username ?? "")
+                    self?.navigationController?.pushViewController(profileVC, animated: true)
+                })
+        }))
+        
+        
+        alert.addAction(UIAlertAction(title: "Cancel",
+                                      style: .cancel,
+                                      handler: { _ in
+            
+        }))
+        
+        present(alert, animated: true)
+    }
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -150,6 +242,7 @@ class LogInViewController: UIViewController {
         scrollView.addSubview(crackButton)
         scrollView.addSubview(activiIndicator)
         scrollView.addSubview(timerLabel)
+        scrollView.addSubview(newButton)
         setupViews()
     }
     
@@ -193,6 +286,7 @@ class LogInViewController: UIViewController {
         crackButton.translatesAutoresizingMaskIntoConstraints = false
         activiIndicator.translatesAutoresizingMaskIntoConstraints = false
         timerLabel.translatesAutoresizingMaskIntoConstraints = false
+        newButton.translatesAutoresizingMaskIntoConstraints = false
         
         scrollView.isScrollEnabled = true
    
@@ -229,6 +323,12 @@ class LogInViewController: UIViewController {
             logInButton.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -16),
             logInButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             
+            newButton.topAnchor.constraint(equalTo: logInButton.bottomAnchor, constant: 16),
+            newButton.heightAnchor.constraint(equalToConstant: 50),
+            newButton.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
+            newButton.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -16),
+
+            
             crackButton.bottomAnchor.constraint(equalTo: logInButton.bottomAnchor, constant: 150),
             crackButton.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             crackButton.widthAnchor.constraint(equalToConstant: 50),
@@ -240,7 +340,9 @@ class LogInViewController: UIViewController {
             activiIndicator.heightAnchor.constraint(equalTo: crackButton.widthAnchor),
             
             timerLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 80),
-            timerLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor)
+            timerLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            
+           
         
         ]
         
