@@ -11,10 +11,10 @@ import FirebaseAuth
 
 class LogInViewController: UIViewController {
     
-    var loginFactory: MyLoginFactory?
+    weak var loginFactory: MyLoginFactory?
     
     var delegate: LogInViewControllerDelegate?
-    
+        
     let scrollView = UIScrollView()
     
     var logoImage: UIImageView = {
@@ -107,7 +107,6 @@ class LogInViewController: UIViewController {
             let userService = CurrentUserService()
             #endif
     
-    
             if let username = emailPhoneTextField.text,
                let inspector = loginFactory?.factoryLogin,
             inspector().checkLoginPass(enterLogin: username, enterPass: passwordTextField.text ?? "") == true {
@@ -134,7 +133,7 @@ class LogInViewController: UIViewController {
     var newButton: UIButton = {
         let newButton = UIButton()
         newButton.backgroundColor = .purple
-        newButton.setTitle("Let's Go", for: .normal)
+        newButton.setTitle("Let's Go Firebase", for: .normal)
         newButton.setTitleColor(.white, for: .normal)
         newButton.layer.masksToBounds = true
         newButton.layer.cornerRadius = 10
@@ -142,61 +141,58 @@ class LogInViewController: UIViewController {
         return newButton
     }()
     
+ 
     @objc func newButtonTapped() {
-        
         guard let email = emailPhoneTextField.text, !email.isEmpty,
               let password = passwordTextField.text, !password.isEmpty else {
                   let alert = UIAlertController(title: "No data",
-                                                message: "enter data",
+                                                message: "please enter all data",
                                                 preferredStyle: .alert)
-                  
+
                   alert.addAction(UIAlertAction(title: "Continue",
                                                 style: .cancel))
-                  
+
                   present(alert, animated: true)
                   return
               }
-        
-        FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password, completion: { [weak self] result, error in
-            guard let strongSelf = self else {
-                return
-            }
-            guard error == nil else {
-                strongSelf.showCreateAccount(email: email, password: password )
-                return
-            }
-            
-            print("you have signed in")
-            
-            #if DEBUG
-            let userService = TestUserService()
-            #else
-            let userService = CurrentUserService()
-            #endif
 
-            let username = self?.emailPhoneTextField.text
-            let profileVC = ProfileViewController(userServiceProperty: userService, userName: username ?? "")
-            self?.navigationController?.pushViewController(profileVC, animated: true)
-        })
         
-    }
-    
-    func showCreateAccount(email: String, password: String) {
-        let alert = UIAlertController(title: "Account not found",
-                                      message:  "Create account?",
-                                      preferredStyle: .alert )
-        
-        alert.addAction(UIAlertAction(title: "Continue",
-                                      style: .default,
-                                      handler: { _ in
-                FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password, completion: { [weak self] result, error in
-                    
-                    guard error == nil else {
-                        print("Account creation false")
-                        return
-                    }
-                    
-                    print("Account created, you have signed in")
+        if let inspector = loginFactory?.factoryLogin {
+            inspector().newButtonTapped(emailLogin: email, passwordLogin: password) { checking in
+                switch checking {
+                case .loginError:
+                    let alert = UIAlertController(title: "Account not found",
+                                                  message:  "Create account?",
+                                                  preferredStyle: .alert )
+            
+                    alert.addAction(UIAlertAction(title: "Continue",
+                                                  style: .default,
+                                                  handler: { _ in
+                        inspector().showCreateAccount(email: email, password: password) { createCheck in
+                            switch createCheck {
+                            case .good:
+                                
+                                #if DEBUG
+                                let userService = TestUserService()
+                                #else
+                                let userService = CurrentUserService()
+                                #endif
+                                
+                                let profileVC = ProfileViewController(userServiceProperty: userService, userName: email)
+                                self.navigationController?.pushViewController(profileVC, animated: true)
+                            case .error:
+                                print("Account creation false")
+                            }
+                        }
+                    }))
+                    alert.addAction(UIAlertAction(title: "Cancel",
+                                                  style: .cancel,
+                                                  handler: { _ in
+                    }))
+                    self.present(alert, animated: true)
+                
+                case .loginGood:
+                    print("YRAAAA")
                     
                     #if DEBUG
                     let userService = TestUserService()
@@ -204,24 +200,13 @@ class LogInViewController: UIViewController {
                     let userService = CurrentUserService()
                     #endif
 
-                    let username = self?.emailPhoneTextField.text
-                    let profileVC = ProfileViewController(userServiceProperty: userService, userName: username ?? "")
-                    self?.navigationController?.pushViewController(profileVC, animated: true)
-                })
-        }))
-        
-        
-        alert.addAction(UIAlertAction(title: "Cancel",
-                                      style: .cancel,
-                                      handler: { _ in
-            
-        }))
-        
-        present(alert, animated: true)
+                    let profileVC = ProfileViewController(userServiceProperty: userService, userName: email)
+                    self.navigationController?.pushViewController(profileVC, animated: true)
+                    }
+                }
+            }
     }
-    
-    
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()

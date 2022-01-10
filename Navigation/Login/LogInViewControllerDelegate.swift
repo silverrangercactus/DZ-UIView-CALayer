@@ -7,9 +7,14 @@
 //
 
 import Foundation
+import UIKit
 
 protocol LogInViewControllerDelegate {
     
     func checkLoginPass(enterLogin: String, enterPass: String) -> Bool
     
+    func newButtonTapped(emailLogin: String, passwordLogin: String, completion: @escaping (LoginCheck) -> Void)
+    
+    func showCreateAccount(email: String, password: String, completion: @escaping (CreateLoginCheck) -> Void)
+        
 }
